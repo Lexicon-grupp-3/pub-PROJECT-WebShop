@@ -7,8 +7,8 @@ using Microsoft.Extensions.Options;
 
 namespace WebShopReactCore.Data
 {
-    public class AppStoreDbContext:DbContext
+    public class AppStoreDbContext : DbContext
     {
-        public AppStoreDbContext(DbContextOptions options) : base(options) { }
+        public AppStoreDbContext(DbContextOptions<AppStoreDbContext> options) : base(options) { }
     }
 }

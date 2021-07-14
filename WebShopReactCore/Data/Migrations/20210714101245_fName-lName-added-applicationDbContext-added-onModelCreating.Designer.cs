@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebShopReactCore.Data;
 
 namespace WebShopReactCore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210714101245_fName-lName-added-applicationDbContext-added-onModelCreating")]
+    partial class fNamelNameaddedapplicationDbContextaddedonModelCreating
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -151,15 +153,15 @@ namespace WebShopReactCore.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "dfef2abc-d1f8-46aa-812a-495b6957752a",
-                            ConcurrencyStamp = "dfef2abc-d1f8-46aa-812a-495b6957752a",
+                            Id = "351e8f3e-a13d-4748-ae8d-e7de7e9a2550",
+                            ConcurrencyStamp = "351e8f3e-a13d-4748-ae8d-e7de7e9a2550",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "e9208af7-4c0e-4fa0-9665-eed3a60679e0",
-                            ConcurrencyStamp = "e9208af7-4c0e-4fa0-9665-eed3a60679e0",
+                            Id = "84639310-433b-455d-a7fc-1ab350d367ba",
+                            ConcurrencyStamp = "84639310-433b-455d-a7fc-1ab350d367ba",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -254,13 +256,13 @@ namespace WebShopReactCore.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "cfa2fec1-484c-4f2e-b043-d301ced97434",
-                            RoleId = "dfef2abc-d1f8-46aa-812a-495b6957752a"
+                            UserId = "7e0daa1c-a45c-4ab3-80fd-828e96e282c7",
+                            RoleId = "351e8f3e-a13d-4748-ae8d-e7de7e9a2550"
                         },
                         new
                         {
-                            UserId = "d1b89678-c2bc-4675-a159-50b37fcf7c22",
-                            RoleId = "e9208af7-4c0e-4fa0-9665-eed3a60679e0"
+                            UserId = "4537ad5a-f308-4fe8-a6f1-04cc35736cc1",
+                            RoleId = "84639310-433b-455d-a7fc-1ab350d367ba"
                         });
                 });
 
@@ -358,9 +360,9 @@ namespace WebShopReactCore.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cfa2fec1-484c-4f2e-b043-d301ced97434",
+                            Id = "7e0daa1c-a45c-4ab3-80fd-828e96e282c7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "dfef2abc-d1f8-46aa-812a-495b6957752a",
+                            ConcurrencyStamp = "351e8f3e-a13d-4748-ae8d-e7de7e9a2550",
                             Email = "admin@data4mat.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -368,17 +370,17 @@ namespace WebShopReactCore.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@DATA4MAT.COM",
                             NormalizedUserName = "ADMIN@DATA4MAT.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKIZlFqA+/V4B2/axQqiuPCev9u0MRdtH2iPOhJstX/NOQAM2DfqIACSbXz7PCjzpA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFrYnm6HWfML81a+/A3WtzL/upcCWkgkX1rdwqfZh6zeaelOGPYPBj3shfS+bv/G/w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "dfef2abc-d1f8-46aa-812a-495b6957752a",
+                            SecurityStamp = "351e8f3e-a13d-4748-ae8d-e7de7e9a2550",
                             TwoFactorEnabled = false,
                             UserName = "admin@data4mat.com"
                         },
                         new
                         {
-                            Id = "d1b89678-c2bc-4675-a159-50b37fcf7c22",
+                            Id = "4537ad5a-f308-4fe8-a6f1-04cc35736cc1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e9208af7-4c0e-4fa0-9665-eed3a60679e0",
+                            ConcurrencyStamp = "84639310-433b-455d-a7fc-1ab350d367ba",
                             Email = "chris@data4mat.com",
                             EmailConfirmed = true,
                             FirstName = "Chris",
@@ -386,9 +388,9 @@ namespace WebShopReactCore.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "CHRIS@DATA4MAT.COM",
                             NormalizedUserName = "CHRIS@DATA4MAT.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECh/zHF+zeriztQoWFDE9IDDSxtKj4+nig4Ri3zY/Qn039zAFrfIG0idM2ms3LgV4w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB9KscIFxj44Jx0AeST6VVuJGAVxPLQqQ1jGMbZQRpwUKPX7N86L/DPM6M4bkelz+w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e9208af7-4c0e-4fa0-9665-eed3a60679e0",
+                            SecurityStamp = "84639310-433b-455d-a7fc-1ab350d367ba",
                             TwoFactorEnabled = false,
                             UserName = "chris@data4mat.com"
                         });
