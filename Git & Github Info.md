@@ -57,6 +57,15 @@ Git version controll download site: https://git-scm.com
 \>git branch \<nameOfBranch>\
 \>git checkout -b \<nameOfBranch> _(switches to nameOfBranch branch, if it doesn't exists it will be created)_
 
+### Delete branch locally
+
+\>git branch -d \<branchName>\
+\>git branch -D \<branchName> _(**forces** a delete of branchName)_\
+
+### Delete remote branch
+
+\>git branch \<nameOfRemote> --delete \<branchName>
+
 ### Switch to branch ...
 
 \>git checkout \<nameOfBranch>
