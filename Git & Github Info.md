@@ -55,7 +55,7 @@ Git version controll download site: https://git-scm.com
 ### Creat new branch
 
 \>git branch \<nameOfBranch>\
-\>git checkout -b \<nameOfBranch> _(switches to nameOfBranch branch, if it doesn't exists it will be created)_
+\>git checkout -b \<nameOfBranch> _(switches to nameOfBranch branch, if it doesn't exist it will be created)_
 
 ### Delete branch locally
 
