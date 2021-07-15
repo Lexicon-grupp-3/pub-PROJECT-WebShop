@@ -52,7 +52,7 @@ Git version controll download site: https://git-scm.com
 
 \>git branch _(Lists all branches, active branch denoted with an asterix)_
 
-### Creat new branch
+### Create new branch
 
 \>git branch \<nameOfBranch>\
 \>git checkout -b \<nameOfBranch> _(switches to nameOfBranch branch, if it doesn't exist it will be created)_
