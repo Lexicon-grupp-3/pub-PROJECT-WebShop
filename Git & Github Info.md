@@ -18,7 +18,7 @@ Git version controll download site: https://git-scm.com
 
 ### Global configuration of user information used at sign in on github
 
-\>git config --global user.name "Your usernam on github"\
+\>git config --global user.name "Your username on github"\
 \>git config --global user.email "Your email"\
 \>git config --global user.password "Your password on github"
 
@@ -50,7 +50,7 @@ Git version controll download site: https://git-scm.com
 
 ### View branches
 
-\>git branch _(Lists all branches, active branch denoted with an asterix)_
+\>git branch _(Lists all branches, active branch denoted with an asterisk)_
 
 ### Create new branch
 
