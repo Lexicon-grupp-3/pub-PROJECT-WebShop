@@ -1,5 +1,12 @@
 ﻿To Project page:
-https://github.com/orgs/pub-education/projects/2
+https://github.com/orgs/Lexicon-grupp-3/projects
 
 To Repository for pub-PROJECT-WebShop
-https://github.com/pub-education/pub-PROJECT-WebShop
+https://github.com/Lexicon-grupp-3/pub-PROJECT-WebShop
+
+Info about git / Github
+https://www.youtube.com/watch?v=uUuTYDg9XoI&list=PLjQo0sojbbxVHcVN4h9DMu6U6spKk21uP
+
+Pluralsight video about building a website with React and ASP.NET Core
+https://app.pluralsight.com/library/courses/aspdotnet-core-react-building-website/table-of-contents?aid=7010a000002BWqGAAW
+
