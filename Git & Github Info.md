@@ -18,18 +18,15 @@ Git version controll download site: https://git-scm.com
 
 ### Global configuration of user information used at sign in on github
 
-\>git config --global user.name "Your usernam on github"
+\>git config --global user.name "Your usernam on github"\
+\>git config --global user.email "Your email"\
+\>git config --global user.password "Your password on github"\
 
-\>git config --global user.email "Your email"
-
-\>git config --global user.password "Your password on github"
-
-List all configurations
+List all configurations\
 git config --list
 
-List all configurations and their origins
-
-> git config --list --show-origin
+List all configurations and their origins\
+\> git config --list --show-origin
 
 ### Initializing a new git project/folder
 
