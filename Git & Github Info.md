@@ -60,7 +60,7 @@ Git version controll download site: https://git-scm.com
 ### Delete branch locally
 
 \>git branch -d \<branchName>\
-\>git branch -D \<branchName> _(**forces** a delete of branchName)_\
+\>git branch -D \<branchName> _(**forces** a delete of branchName)_
 
 ### Delete remote branch
 
