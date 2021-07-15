@@ -20,12 +20,12 @@ Git version controll download site: https://git-scm.com
 
 \>git config --global user.name "Your usernam on github"\
 \>git config --global user.email "Your email"\
-\>git config --global user.password "Your password on github"\
+\>git config --global user.password "Your password on github"
 
-List all configurations\
+**List all configurations**\
 \>git config --list
 
-List all configurations and their origins\
+**List all configurations and their origins**\
 \> git config --list --show-origin
 
 ### Initializing a new git project/folder
@@ -68,7 +68,7 @@ List all configurations and their origins\
 ### View changes in a particular commit
 
 \>git show \<commitId>\
-Example:\
+**Example:**\
 \>git show c26fc3019a662c46f61d6c5fc9c59d1be1ecefb9 _(commit id can be found in \">git log\")_
 
 ### Merge branches locally
