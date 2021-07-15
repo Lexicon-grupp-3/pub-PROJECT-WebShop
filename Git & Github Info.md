@@ -40,7 +40,7 @@ Git version controll download site: https://git-scm.com
 ### Commit files and changes
 
 \>git commit -m "Comment describing the changes and/or additions" _(needs a \">git add <file.xxx> or .\" before commit command.)_\
-\>git commit -am "Comments as above" _(if all files are already tracked then this will commit changes without having to do a \">git add\" command first.)_\
+\>git commit -am "Comments as above" _(if all files are already tracked then this will commit changes without having to do a \">git add\" command first.)_
 
 ### Checking the changes in a file
 
