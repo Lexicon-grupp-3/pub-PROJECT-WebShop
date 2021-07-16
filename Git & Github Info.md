@@ -35,7 +35,9 @@ Git version controll download site: https://git-scm.com
 ### Add files to track, all new files must be added so they can be tracked
 
 \>git add \<file1name.xxx>, \<file2name.xxx> _(list of individual files)_\
-\>git add . _(adds all)_
+\>git add . _(adds all)_\
+or\
+\>git add -A _(also adds all)_
 
 ### Commit files and changes
 
