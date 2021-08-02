@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebShopReactCore.Data;
+using WebShopReactCore.Models;
 
 namespace WebShopReactCore.Controllers
 {
@@ -16,10 +17,44 @@ namespace WebShopReactCore.Controllers
         {
             _context = ctx;
         }
-        // GET: AuthorBookController
-        public ActionResult Index()
+
+
+        [HttpGet]
+        public IEnumerable<Author> Index()
         {
-            return View();
+            //var rng = new Random();
+            var x = Enumerable.Range(1, 5).Select(index => new Author
+            {
+                Id = index,
+                FirstName = "Kalle",
+                LastName = "Olsson"
+            })
+            .ToArray();
+            //return Enumerable.Range(1, 5).Select(index => new Author
+            //{
+            //    Id = 1,
+            //    FirstName = "Kalle",
+            //    LastName = "Olsson"
+            //})
+            //.ToArray();
+            return x;
+        }
+
+
+
+
+
+        // GET: AuthorBookController
+        public ActionResult Index2()
+        {
+            //var rng = new Random();
+            //return Enumerable.Range(1, 5).Select(index => new Author
+            //{
+            //    FirstName = "Kalle",
+            //    LastName = "Olsson"
+            //})
+            //.ToArray();
+            return View("text från AuthorBookController");
         }
 
         // GET: AuthorBookController/Details/5
