@@ -1,5 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import './layout.css';
+﻿import 'bootstrap/dist/css/bootstrap.css';
+//import './layout.css';
+import './styles/styles.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';

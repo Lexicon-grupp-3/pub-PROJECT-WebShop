@@ -18,7 +18,8 @@ export class Counter extends Component {
   render() {
     return (
       <div>
-        <h1>Counter</h1>
+            <h1>Counter Testing å ä and ö, Å, Ä Ö!</h1>
+            <p>Testing å ä and ö, Å, Ä Ö!</p>
 
         <p>This is a simple example of a React component.</p>
 

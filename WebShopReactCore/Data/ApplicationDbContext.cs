@@ -28,8 +28,10 @@ namespace WebShopReactCore.Data
 
             string adminRoleId = Guid.NewGuid().ToString();
             string userRoleId = Guid.NewGuid().ToString();
+            string user2RoleId = Guid.NewGuid().ToString();
             string adminId = Guid.NewGuid().ToString();
             string userId = Guid.NewGuid().ToString();
+            string userId2 = Guid.NewGuid().ToString();
 
             builder.Entity<IdentityRole>().HasData(
                 new IdentityRole
@@ -45,6 +47,13 @@ namespace WebShopReactCore.Data
                     Name = "user",
                     NormalizedName = "USER",
                     ConcurrencyStamp = userRoleId
+                },
+                new IdentityRole
+                {
+                    Id = user2RoleId,
+                    Name = "user",
+                    NormalizedName = "USER",
+                    ConcurrencyStamp = user2RoleId
                 });
 
             PasswordHasher<ApplicationUser> passwordHasher = new PasswordHasher<ApplicationUser>();
@@ -77,6 +86,20 @@ namespace WebShopReactCore.Data
                 SecurityStamp = userRoleId
             };
 
+            var SiteUser2 = new ApplicationUser
+            {
+                Id = userId2,
+                FirstName = "ÅäöÖÖ",
+                LastName = "Jönssånäs",
+                Email = "chris2@data4mat.com",
+                NormalizedEmail = "CHRIS2@DATA4MAT.COM",
+                EmailConfirmed = true,
+                UserName = "chris2@data4mat.com",
+                NormalizedUserName = "CHRIS2@DATA4MAT.COM",
+                ConcurrencyStamp = user2RoleId,
+                SecurityStamp = user2RoleId
+            };
+
 
             AdminUser.PasswordHash = passwordHasher.HashPassword(AdminUser, "admin");
             builder.Entity<ApplicationUser>().HasData(AdminUser);
@@ -94,6 +117,15 @@ namespace WebShopReactCore.Data
                 {
                     RoleId = userRoleId,
                     UserId = userId
+                });
+
+            SiteUser.PasswordHash = passwordHasher.HashPassword(SiteUser2, "1234");
+            builder.Entity<ApplicationUser>().HasData(SiteUser2);
+            builder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string>
+                {
+                    RoleId = userRoleId,
+                    UserId = userId2
                 });
         }
     }

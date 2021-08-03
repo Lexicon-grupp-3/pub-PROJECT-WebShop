@@ -1,4 +1,4 @@
-export const ApplicationName = 'WebShopReactCore';
+﻿export const ApplicationName = 'WebShopReactCore';
 
 export const QueryParameterNames = {
   ReturnUrl: 'returnUrl',
