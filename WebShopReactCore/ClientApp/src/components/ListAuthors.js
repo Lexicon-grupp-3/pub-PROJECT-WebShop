@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import authService from './api-authorization/AuthorizeService'
+//import authService from './api-authorization/AuthorizeService'
 
 export class ListAuthors extends Component {
   static displayName = ListAuthors.name;
@@ -49,11 +49,13 @@ export class ListAuthors extends Component {
   }
 
   async populateAuthorData() {
-    const token = await authService.getAccessToken();
-    const response = await fetch('authorBook', {
+    //const token = await authService.getAccessToken();
+      const response = await fetch('AuthorBook');
+      /*, {
       headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
     });
+    */
     const data = await response.json();
-    this.setState({ authorlist: data, loading: false });
+    this.setState({ authors: data, loading: false });
   }
 }
