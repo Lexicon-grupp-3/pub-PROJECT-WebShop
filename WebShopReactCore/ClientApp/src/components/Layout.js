@@ -8,7 +8,7 @@ export class Layout extends Component {
   render () {
     return (
       <div>
-        <NavMenu />
+            <NavMenu menuText={'Lista författare'} />
         <Container>
           {this.props.children}
         </Container>
@@ -16,3 +16,5 @@ export class Layout extends Component {
     );
   }
 }
+
+//export default Layout;

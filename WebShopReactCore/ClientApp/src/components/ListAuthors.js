@@ -18,7 +18,7 @@ export class ListAuthors extends Component {
       <table className='table table-striped' aria-labelledby="tabelLabel">
         <thead>
           <tr>
-            <th>Förnamn</th>
+            <th>FÃ¶rnamn</th>
             <th>Efternamn</th>
           </tr>
         </thead>
@@ -41,8 +41,8 @@ export class ListAuthors extends Component {
 
     return (
       <div>
-        <h1 id="tabelLabel" >Författare</h1>
-        <p>Den här bilden ska lista författare.</p>
+        <h1 id="tabelLabel" >FÃ¶rfattare</h1>
+        <p>Den hÃ¤r bilden ska lista fÃ¶rfattare.</p>
         {contents}
       </div>
     );
