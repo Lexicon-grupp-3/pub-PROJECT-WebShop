@@ -23,7 +23,7 @@ export class ListAuthors extends Component {
           </tr>
         </thead>
         <tbody>
-          {authors.map(author =>
+          {authors.listOfAuthors.map(author =>
             <tr key={author.id}>
               <td>{author.firstName}</td>
               <td>{author.lastName}</td>
@@ -53,7 +53,11 @@ export class ListAuthors extends Component {
       const response = await fetch('AuthorBook');
       /*, {
       headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+<<<<<<< HEAD
     });
+=======
+    }); 
+>>>>>>> 534a2493657276e3a1faedf72482799de8acf45a
     */
     const data = await response.json();
     this.setState({ authors: data, loading: false });
