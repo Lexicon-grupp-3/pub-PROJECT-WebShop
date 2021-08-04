@@ -37,7 +37,7 @@ namespace WebShopReactCore.Controllers
             return authors;
         }
 
-        public BooksViewModel Books()
+        public BooksViewModel Books1()
         {
             BooksViewModel books = new BooksViewModel();
             books.ListOfBooks = _context.Books.ToList();
@@ -52,7 +52,7 @@ namespace WebShopReactCore.Controllers
 
             return books;
         }
-        public BooksViewModel2 Books2()
+        public BooksViewModel2 Books()
         {
             BooksViewModel2 books = new BooksViewModel2();
             books.ListOfBooks = new List<BookInfoLine>();
