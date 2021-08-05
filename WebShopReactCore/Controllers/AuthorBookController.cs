@@ -40,18 +40,24 @@ namespace WebShopReactCore.Controllers
         public BooksViewModel Books1()
         {
             BooksViewModel books = new BooksViewModel();
-            books.ListOfBooks = _context.Books.ToList();
-            foreach (var book in books.ListOfBooks)
+            books.ListOfBooks = new List<Book>();
+            foreach (var book in _context.Books.ToList())
                 {
-                    book.AuthorBooks = _context.AuthorBooks.Where(ab => ab.BookId == book.Id).ToList();
+                    book.Authors = _context.Authors.Where(ab => ab.Id == book.Id).ToList();
+                /*
                 foreach (var ab in book.AuthorBooks)
                 {
                     ab.Author = _context.Authors.Where(a => a.Id == ab.AuthorId).FirstOrDefault();
                 }
+                */
+                books.ListOfBooks.Add(book);
+
             }
 
             return books;
         }
+
+        /*
         public BooksViewModel2 Books()
         {
             BooksViewModel2 books = new BooksViewModel2();
@@ -64,18 +70,20 @@ namespace WebShopReactCore.Controllers
                     ab.Author = _context.Authors.Where(a => a.Id == ab.AuthorId).FirstOrDefault();
                 }
 
+                
                 BookInfoLine bookInfoLine = new BookInfoLine();
                 bookInfoLine.Id = book.Id;
                 bookInfoLine.Title = book.Title;
                 bookInfoLine.ISBN = book.ISBN;
                 bookInfoLine.Price = book.Price;
                 bookInfoLine.AuthorFullName = _context.Authors.Where(a => a.Id == book.AuthorBooks.First().AuthorId).FirstOrDefault().FullName;
+                
                 books.ListOfBooks.Add(bookInfoLine);
             }
 
             return books;
         }
-
+        */
 
         // GET: AuthorBookController
         public ActionResult Index2()

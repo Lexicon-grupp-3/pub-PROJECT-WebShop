@@ -15,24 +15,7 @@ namespace WebShopReactCore.Data
         }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
-        public DbSet<AuthorBook> AuthorBooks { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<OrderItem>()
-                .HasOne(oi => oi.Order)
-                .WithMany(o => o.OrderItems)
-                .HasForeignKey(oi => oi.OrderId);
-
-            modelBuilder.Entity<AuthorBook>()
-                .HasKey(sc => new { sc.AuthorId, sc.BookId });
-
-            modelBuilder.Seed();
-
-            base.OnModelCreating(modelBuilder);
-
-        }
     }
 }

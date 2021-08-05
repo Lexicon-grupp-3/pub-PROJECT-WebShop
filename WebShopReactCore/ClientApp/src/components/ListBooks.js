@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import authService from './api-authorization/AuthorizeService'
 
 export class ListBooks extends Component {
   static displayName = ListBooks.name;
@@ -27,7 +26,8 @@ export class ListBooks extends Component {
           {books.listOfBooks.map(book =>
             <tr key={book.id}>
                 <td>{book.title}</td>
-                <td>{book.authorFullName}</td>
+                  <td>{book.authors.map(author => <span>{author.fullName} </span>
+                  )}</td>
                 <td>{book.isbn}</td>
             </tr>
           )}
@@ -50,7 +50,7 @@ export class ListBooks extends Component {
   }
 
   async populateBooksData() {
-    const response = await fetch('AuthorBook/Books');
+    const response = await fetch('AuthorBook/Books1');
     const data = await response.json();
     this.setState({ books: data, loading: false });
   }

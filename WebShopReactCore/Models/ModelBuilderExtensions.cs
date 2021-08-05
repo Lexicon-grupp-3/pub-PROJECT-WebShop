@@ -95,6 +95,7 @@ namespace WebShopReactCore.Models
                     Price = 90.00M
                 }
             );
+            /*
             modelBuilder.Entity<AuthorBook>().HasData(
                 new AuthorBook
                 {
@@ -127,6 +128,7 @@ namespace WebShopReactCore.Models
                     BookId = 6
                 }
             );
+            */
         }
     }
 }

@@ -22,7 +22,7 @@ export default class App extends Component {
         <Route path='/counter' component={Counter} />
         <AuthorizeRoute path='/fetch-data' component={FetchData} />
         <AuthorizeRoute path='/list-authors' component={ListAuthors} />
-        <AuthorizeRoute path='/list-books' component={ListBooks} />
+        <Route path='/list-books' component={ListBooks} />
         <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
       </Layout>
     );
