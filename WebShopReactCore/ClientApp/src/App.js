@@ -5,6 +5,7 @@ import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { ListAuthors } from './components/ListAuthors';
+import { AuthorDetail } from './components/AuthorDetail';
 import { ListBooks } from './components/ListBooks';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
@@ -22,6 +23,7 @@ export default class App extends Component {
         <Route path='/counter' component={Counter} />
         <AuthorizeRoute path='/fetch-data' component={FetchData} />
         <AuthorizeRoute path='/list-authors' component={ListAuthors} />
+        <AuthorizeRoute path='/author-detail/:id' component={AuthorDetail} />   {/* obs! missa inte import */}
         <AuthorizeRoute path='/list-books' component={ListBooks} />
         <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
       </Layout>

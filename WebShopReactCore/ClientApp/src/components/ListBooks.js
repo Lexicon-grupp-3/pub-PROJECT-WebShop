@@ -18,6 +18,7 @@ export class ListBooks extends Component {
       <table className='table table-striped' aria-labelledby="tabelLabel">
         <thead>
           <tr>
+            <th>Id</th>
             <th>Titel</th>
             <th>Författare</th>
             <th>ISBN</th>
@@ -25,10 +26,11 @@ export class ListBooks extends Component {
         </thead>
         <tbody>
           {books.listOfBooks.map(book =>
-            <tr key={book.id}>
-                <td>{book.title}</td>
+            <tr key={book.bookV.id}>
+                <td>{book.bookV.id}</td>
+                <td>{book.bookV.title}</td>
                 <td>{book.authorFullName}</td>
-                <td>{book.isbn}</td>
+                <td>{book.bookV.isbn}</td>
             </tr>
           )}
         </tbody>

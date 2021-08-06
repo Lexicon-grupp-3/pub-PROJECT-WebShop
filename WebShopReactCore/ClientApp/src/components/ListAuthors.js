@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import authService from './api-authorization/AuthorizeService'
+import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export class ListAuthors extends Component {
-  static displayName = ListAuthors.name;
+    static displayName = ListAuthors.name;
+    static history = useHistory;
 
   constructor(props) {
     super(props);
@@ -13,7 +16,15 @@ export class ListAuthors extends Component {
     this.populateAuthorData();
   }
 
-  static renderAuthorsTable(authors) {
+    static renderAuthorsTable(authors) {
+
+
+        //let history = useHistory();
+
+        //const redirect = () => {
+        //    history.push('/author-detail')
+        //}
+
     return (
       <table className='table table-striped' aria-labelledby="tabelLabel">
         <thead>
@@ -27,6 +38,29 @@ export class ListAuthors extends Component {
             <tr key={author.id}>
               <td>{author.firstName}</td>
               <td>{author.lastName}</td>
+              <td>
+                {/*<button type="button" onClick={this.handleClick.bind(this)}>*/}
+                {/*    {this.props.button_text}*/}
+                {/*</button>*/}
+                {/*<button type="button" onClick={redirect}>*/}
+                {/*<Link to="/author-detail/:id">*/}
+                <Link to={'/author-detail/${author.id}'}>
+                    <button type="button">Visa</button>
+                </Link>
+                {/*<button type="button" onClick={"/author-detail"}>*/}
+                {/*    {"Visa"}*/}
+                {/*</button>*/}
+                <button type="button" onClick={"() => {history.push('/author-detail')"}>
+                    {"Ändra"}
+                </button>
+                <button type="button" onClick={"xxx"}>
+                    {"Ta bort"}
+                </button>
+                      {/*<button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>*/}
+                      {/*<button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>*/}
+
+
+              </td>
             </tr>
           )}
         </tbody>
@@ -42,7 +76,6 @@ export class ListAuthors extends Component {
     return (
       <div>
         <h1 id="tabelLabel" >Författare</h1>
-        <p>Den här bilden ska lista författare.</p>
         {contents}
       </div>
     );

@@ -7,10 +7,11 @@ namespace WebShopReactCore.Models
 {
     public class BooksViewModel
     {
-        public List<Book> ListOfBooks { get; set; }
-    }
-    public class BooksViewModel2
-    {
         public List<BookInfoLine> ListOfBooks { get; set; }
+    }
+    public class BookInfoLine
+    {
+        public Book bookV { get; set; }
+        public string AuthorFullName { get; set; }
     }
 }
