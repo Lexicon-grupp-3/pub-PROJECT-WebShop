@@ -113,12 +113,12 @@ namespace WebShopReactCore.Models
                 },
                 new AuthorBook
                 {
-                    AuthorId = 5,
+                    AuthorId = 4,
                     BookId = 5
                 },
                 new AuthorBook
                 {
-                    AuthorId = 6,
+                    AuthorId = 5,
                     BookId = 5
                 },
                 new AuthorBook

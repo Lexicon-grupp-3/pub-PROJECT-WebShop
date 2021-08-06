@@ -32,7 +32,7 @@ namespace WebShopReactCore.Controllers
         public AuthorsViewModel Index()
         {
             AuthorsViewModel authors = new AuthorsViewModel();
-            authors.ListOfAuthors = _context.Authors.ToList();
+            authors.ListOfAuthors = _context.Authors.OrderBy(a => a.LastName).ToList();
 
             return authors;
         }
@@ -48,13 +48,20 @@ namespace WebShopReactCore.Controllers
         {
             BooksViewModel books = new BooksViewModel();
             books.ListOfBooks = new List<BookInfoLine>();
-            foreach (var book1 in _context.Books.ToList())
+            foreach (var book1 in _context.Books.OrderBy(b => b.Title).ToList())
             {
                 BookInfoLine bookInfoLine = new BookInfoLine();
                 bookInfoLine.bookV = book1;
                 // Ta fram Id för alla författare till denna bok
                 book1.AuthorBooks = _context.AuthorBooks.Where(ab => ab.BookId == book1.Id).ToList();
-                bookInfoLine.AuthorFullName = _context.Authors.Where(a => a.Id == book1.AuthorBooks.First().AuthorId).FirstOrDefault().FullName;
+                foreach (var a1 in book1.AuthorBooks)  // och hämta namnen för respektive
+                {
+                    string x = _context.Authors.Where(a2 => a2.Id == a1.AuthorId).FirstOrDefault().FullName;
+                    if (bookInfoLine.AuthorFullName is null)
+                    { bookInfoLine.AuthorFullName = x; }
+                    else
+                    { bookInfoLine.AuthorFullName = bookInfoLine.AuthorFullName + ", " + x; }
+                }
                 books.ListOfBooks.Add(bookInfoLine);
             }
 

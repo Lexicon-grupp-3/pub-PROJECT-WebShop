@@ -29,15 +29,17 @@ export class ListAuthors extends Component {
       <table className='table table-striped' aria-labelledby="tabelLabel">
         <thead>
           <tr>
-            <th>Förnamn</th>
+            <th>Id</th>
             <th>Efternamn</th>
+            <th>Förnamn</th>
           </tr>
         </thead>
         <tbody>
           {authors.listOfAuthors.map(author =>
             <tr key={author.id}>
-              <td>{author.firstName}</td>
+              <td>{author.id}</td>
               <td>{author.lastName}</td>
+              <td>{author.firstName}</td>
               <td>
                 {/*<button type="button" onClick={this.handleClick.bind(this)}>*/}
                 {/*    {this.props.button_text}*/}
