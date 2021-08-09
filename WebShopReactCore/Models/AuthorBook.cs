@@ -8,10 +8,8 @@ namespace WebShopReactCore.Models
 {
     public class AuthorBook
     {
-        [Key]
         public int AuthorId { get; set; }
 
-        [Key]
         public int BookId { get; set; }
     }
 }

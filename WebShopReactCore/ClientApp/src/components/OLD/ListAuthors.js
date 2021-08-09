@@ -26,7 +26,8 @@ export class ListAuthors extends Component {
           {authors.listOfAuthors.map(author =>
             <tr key={author.id}>
               <td>{author.firstName}</td>
-              <td>{author.lastName}</td>
+                  <td>{author.lastName}</td>
+                  <td><button authorid="{author.id}" onClick="./BookDetailsPage">Open</button></td>
             </tr>
           )}
         </tbody>
@@ -51,14 +52,6 @@ export class ListAuthors extends Component {
   async populateAuthorData() {
     //const token = await authService.getAccessToken();
       const response = await fetch('AuthorBook');
-      /*, {
-      headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
-<<<<<<< HEAD
-    });
-=======
-    }); 
->>>>>>> 534a2493657276e3a1faedf72482799de8acf45a
-    */
     const data = await response.json();
     this.setState({ authors: data, loading: false });
   }

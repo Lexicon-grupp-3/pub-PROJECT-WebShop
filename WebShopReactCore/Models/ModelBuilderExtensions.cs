@@ -8,7 +8,7 @@ namespace WebShopReactCore.Models
 {
     public static class ModelBuilderExtensions
     {
-        public static void Seed(this ModelBuilder modelBuilder)
+        public static void SeedProducts(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Author>().HasData(
                 new Author
@@ -95,7 +95,7 @@ namespace WebShopReactCore.Models
                     Price = 90.00M
                 }
             );
-            /*
+            
             modelBuilder.Entity<AuthorBook>().HasData(
                 new AuthorBook
                 {
@@ -128,7 +128,7 @@ namespace WebShopReactCore.Models
                     BookId = 6
                 }
             );
-            */
+            
         }
     }
 }
