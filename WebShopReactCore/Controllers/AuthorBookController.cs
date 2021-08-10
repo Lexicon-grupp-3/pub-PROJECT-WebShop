@@ -44,29 +44,17 @@ namespace WebShopReactCore.Controllers
             return authors;
         }
 
-        public AuthorDetailViewModel AuthorDetail()
+        [HttpPost]
+        public AuthorDetailViewModel AuthorDetail([FromBody] Author author)
         {
-            int id = 1;
+            int id = author.Id;
             AuthorDetailViewModel authorD = new AuthorDetailViewModel();
-            Author author = new Author();
             author = _context.Authors.Find(id);
             authorD.FirstName = author.FirstName;
             authorD.LastName = author.LastName;
 
             return authorD;
         }
-        //public AuthorDetailViewModel AuthorDetail(int idx)
-        //{
-        //    int id = 1;
-        //    AuthorDetailViewModel authorD = new AuthorDetailViewModel();
-        //    Author author = new Author();
-        //    author = _context.Authors.Find(id);
-        //    authorD.FirstName = author.FirstName;
-        //    authorD.LastName = author.LastName;
-
-        //    return authorD;
-        //}
-
 
         [HttpPost]
         public AuthorDetailViewModel AuthorDetail2()

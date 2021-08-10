@@ -42,10 +42,17 @@ export class AuthorDetail extends Component {
     }
 
     async populateAuthorDetail() {
-        var fakeID = 6;
-        //const response = await fetch('AuthorBook/AuthorDetail', { headers: { 'id': '6' }, body: "POST" });
-        const response = await fetch('AuthorBook/AuthorDetail');
+        var fakeID = 3;
 
+        const response = await fetch('AuthorBook/AuthorDetail'
+            , {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ id: fakeID}) // body data type must match "Content-Type" header
+            }
+
+        );
         const data = await response.json();
         this.setState({ author: data, loading: false });
     }
