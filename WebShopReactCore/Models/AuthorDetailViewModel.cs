@@ -17,5 +17,6 @@ namespace WebShopReactCore.Models
 
         [DisplayName("Namn")]
         public string FullName => $"{FirstName} {LastName}";
+
     }
 }

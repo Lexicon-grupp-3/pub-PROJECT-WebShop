@@ -20,14 +20,13 @@ namespace WebShopReactCore.Controllers
 
 
         [HttpGet]
-        public IEnumerable<Author> Index3()
-        {
-            AuthorsViewModel authors = new AuthorsViewModel();
-            authors.ListOfAuthors = _context.Authors.ToList();
+        //public IEnumerable<Author> Index3()
+        //{
+        //    AuthorsViewModel authors = new AuthorsViewModel();
+        //    authors.ListOfAuthors = _context.Authors.ToList();
 
-            return authors.ListOfAuthors;
-        }
-
+        //    return authors.ListOfAuthors;
+        //}
 
         public AuthorsViewModel Index()
         {
@@ -37,13 +36,56 @@ namespace WebShopReactCore.Controllers
             return authors;
         }
 
+        public AuthorsViewModel Authors()
+        {
+            AuthorsViewModel authors = new AuthorsViewModel();
+            authors.ListOfAuthors = _context.Authors.OrderBy(a => a.LastName).ToList();
+
+            return authors;
+        }
+
         public AuthorDetailViewModel AuthorDetail()
         {
-            AuthorDetailViewModel author = new AuthorDetailViewModel();
-            author.FirstName = "Kalle";
-            author.LastName = "Fransson";
-            return author;
+            int id = 1;
+            AuthorDetailViewModel authorD = new AuthorDetailViewModel();
+            Author author = new Author();
+            author = _context.Authors.Find(id);
+            authorD.FirstName = author.FirstName;
+            authorD.LastName = author.LastName;
+
+            return authorD;
         }
+        //public AuthorDetailViewModel AuthorDetail(int idx)
+        //{
+        //    int id = 1;
+        //    AuthorDetailViewModel authorD = new AuthorDetailViewModel();
+        //    Author author = new Author();
+        //    author = _context.Authors.Find(id);
+        //    authorD.FirstName = author.FirstName;
+        //    authorD.LastName = author.LastName;
+
+        //    return authorD;
+        //}
+
+
+        [HttpPost]
+        public AuthorDetailViewModel AuthorDetail2()
+        { 
+            AuthorDetailViewModel authorD = new AuthorDetailViewModel();
+            return authorD;
+        }
+        [HttpPost]
+        public AuthorDetailViewModel AuthorDetail2(int idx)
+        {
+            AuthorDetailViewModel authorD = new AuthorDetailViewModel();
+            return authorD;
+        }
+
+
+
+
+
+        // --------- Books  ---------------- 
         public BooksViewModel Books()
         {
             BooksViewModel books = new BooksViewModel();

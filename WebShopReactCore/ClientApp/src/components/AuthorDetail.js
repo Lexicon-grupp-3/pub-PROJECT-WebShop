@@ -1,25 +1,61 @@
 import React, { Component } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 export class AuthorDetail extends Component {
-  static displayName = AuthorDetail.name;
+    static displayName = AuthorDetail.name;
 
     constructor(props) {
-    super(props);
-  //  this.state = { currentCount: 0 };
-  //  this.incrementCounter = this.incrementCounter.bind(this);
-  }
+        super(props);
+        this.state = { author: [], loading: true };
+    }
+
+    componentDidMount() {
+        this.populateAuthorDetail();
+    }
+
+    static renderAuthorDetail(author) {
+        { var id3 = 483 };
+
+        return (
+            <div>
+                <p>id        {author.id}</p>
+                <p>Förnamn   {author.firstName}</p>
+                <p>Efternamn {author.lastName}</p>
+            </div>
+        );
+    }
 
     render() {
-        const { id } = useParams();
+        //const { id } = useHistory();
+        //const { id } = useParams();
 
-    return (
-      <div>
-            <h1>Författare  {id} </h1>
+        let contents = this.state.loading
+            ? <p><em>Loading...</em></p>
+            : AuthorDetail.renderAuthorDetail(this.state.author);
 
-        <p>This is a simple example of a React component.</p>
+        return (
+            <div>
+                <h1>Författare detaljer  </h1>
+                {contents}
+            </div>
+        );
+    }
 
-      </div>
-    );
-  }
+    async populateAuthorDetail() {
+        var fakeID = 6;
+        //const response = await fetch('AuthorBook/AuthorDetail', { headers: { 'id': '6' }, body: "POST" });
+        const response = await fetch('AuthorBook/AuthorDetail');
+
+        const data = await response.json();
+        this.setState({ author: data, loading: false });
+    }
+
+    //async populateAuthorDetail() {
+    //    //int idx = this.state.idin;
+    //    const response = await fetch('AuthorBook/AuthorDetail');
+    //    const data = await response.json();
+    //    this.setState({ author: data, loading: false });
+    //}
+
+
 }
