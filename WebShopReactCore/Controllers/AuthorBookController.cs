@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,153 +19,49 @@ namespace WebShopReactCore.Controllers
             _context = ctx;
         }
 
-
+        /*
+        /// <summary>
+        /// Collects all authors from the database.
+        /// </summary>
+        /// <returns>Returns an AuthorsViewModel containing a list of Author items.</returns>
         [HttpGet]
-        public IEnumerable<Author> Index3()
-        {
-            AuthorsViewModel authors = new AuthorsViewModel();
-            authors.ListOfAuthors = _context.Authors.ToList();
-
-            return authors.ListOfAuthors;
-        }
-
-
-        public AuthorsViewModel Index()
+        public AuthorsViewModel AuthorList()
         {
             AuthorsViewModel authors = new AuthorsViewModel();
             authors.ListOfAuthors = _context.Authors.ToList();
 
             return authors;
         }
-
-        public BooksViewModel Books1()
-        {
-            BooksViewModel books = new BooksViewModel();
-            books.ListOfBooks = new List<Book>();
-            foreach (var book in _context.Books.ToList())
-                {
-                    book.Authors = _context.Authors.Where(ab => ab.Id == book.Id).ToList();
-                /*
-                foreach (var ab in book.AuthorBooks)
-                {
-                    ab.Author = _context.Authors.Where(a => a.Id == ab.AuthorId).FirstOrDefault();
-                }
-                */
-                books.ListOfBooks.Add(book);
-
-            }
-
-            return books;
-        }
+        */
 
         /*
-        public BooksViewModel2 Books()
+        /// <summary>
+        /// Collects all books from the database.
+        /// </summary>
+        /// <returns>Returns a BooksViewModel containing a list of Book items.</returns>
+        [HttpGet]
+        public BooksViewModel BookList()
         {
-            BooksViewModel2 books = new BooksViewModel2();
-            books.ListOfBooks = new List<BookInfoLine>();
-            foreach (var book in _context.Books.ToList())
-            {
-                book.AuthorBooks = _context.AuthorBooks.Where(ab => ab.BookId == book.Id).ToList();
-                foreach (var ab in book.AuthorBooks)
-                {
-                    ab.Author = _context.Authors.Where(a => a.Id == ab.AuthorId).FirstOrDefault();
-                }
-
-                
-                BookInfoLine bookInfoLine = new BookInfoLine();
-                bookInfoLine.Id = book.Id;
-                bookInfoLine.Title = book.Title;
-                bookInfoLine.ISBN = book.ISBN;
-                bookInfoLine.Price = book.Price;
-                bookInfoLine.AuthorFullName = _context.Authors.Where(a => a.Id == book.AuthorBooks.First().AuthorId).FirstOrDefault().FullName;
-                
-                books.ListOfBooks.Add(bookInfoLine);
-            }
+            BooksViewModel books = new BooksViewModel();
+            books.ListOfBooks = _context.Books.Include(b => b.Authors).ToList();
+            //books.ListOfBooks = new List<Book>();
+            //foreach (var book in _context.Books.ToList())
+            //{
+            //    book.Authors = _context.Authors.Where(ab => ab.Id == book.Id).ToList();
+            //    books.ListOfBooks.Add(book);
+            //}
 
             return books;
         }
         */
 
-        // GET: AuthorBookController
-        public ActionResult Index2()
+        [HttpGet]
+        public List<Book> BookList()
         {
-            //var rng = new Random();
-            //return Enumerable.Range(1, 5).Select(index => new Author
-            //{
-            //    FirstName = "Kalle",
-            //    LastName = "Olsson"
-            //})
-            //.ToArray();
-            return View("text från AuthorBookController");
-        }
+            var ret = _context.Books.ToList();
+                //.Include(book => book.AuthorsLink).ThenInclude(ab => ab.Author).ToList();
 
-        // GET: AuthorBookController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: AuthorBookController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: AuthorBookController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AuthorBookController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: AuthorBookController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AuthorBookController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AuthorBookController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return ret;
         }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebShopReactCore.Data;
 
 namespace WebShopReactCore.Migrations
 {
     [DbContext(typeof(AppStoreDbContext))]
-    partial class AppStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210810164012_newLinkTbl-layout")]
+    partial class newLinkTbllayout
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +23,7 @@ namespace WebShopReactCore.Migrations
 
             modelBuilder.Entity("WebShopReactCore.Models.Author", b =>
                 {
-                    b.Property<int>("AuthorId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -32,44 +34,44 @@ namespace WebShopReactCore.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AuthorId");
+                    b.HasKey("Id");
 
                     b.ToTable("Authors");
 
                     b.HasData(
                         new
                         {
-                            AuthorId = 1,
+                            Id = 1,
                             FirstName = "Leena",
                             LastName = "Lehtolainen"
                         },
                         new
                         {
-                            AuthorId = 2,
+                            Id = 2,
                             FirstName = "Caroline",
                             LastName = "Säfstrand"
                         },
                         new
                         {
-                            AuthorId = 3,
+                            Id = 3,
                             FirstName = "Patrick",
                             LastName = "Modiano"
                         },
                         new
                         {
-                            AuthorId = 4,
+                            Id = 4,
                             FirstName = "Maj",
                             LastName = "Sjöwall"
                         },
                         new
                         {
-                            AuthorId = 5,
+                            Id = 5,
                             FirstName = "Per",
                             LastName = "Wahlöö"
                         },
                         new
                         {
-                            AuthorId = 6,
+                            Id = 6,
                             FirstName = "Arnaldur",
                             LastName = "Indriðason"
                         });
@@ -77,63 +79,54 @@ namespace WebShopReactCore.Migrations
 
             modelBuilder.Entity("WebShopReactCore.Models.AuthorBook", b =>
                 {
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
                     b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
-                    b.Property<byte>("Order")
-                        .HasColumnType("tinyint");
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
 
-                    b.HasKey("BookId", "AuthorId");
+                    b.HasKey("AuthorId", "BookId");
 
-                    b.HasIndex("AuthorId");
+                    b.HasIndex("BookId");
 
                     b.ToTable("AuthorBook");
 
                     b.HasData(
                         new
                         {
-                            BookId = 1,
                             AuthorId = 1,
-                            Order = (byte)0
+                            BookId = 1
                         },
                         new
                         {
-                            BookId = 2,
                             AuthorId = 2,
-                            Order = (byte)0
+                            BookId = 2
                         },
                         new
                         {
-                            BookId = 3,
                             AuthorId = 3,
-                            Order = (byte)0
+                            BookId = 3
                         },
                         new
                         {
-                            BookId = 5,
                             AuthorId = 5,
-                            Order = (byte)0
+                            BookId = 5
                         },
                         new
                         {
-                            BookId = 5,
                             AuthorId = 6,
-                            Order = (byte)0
+                            BookId = 5
                         },
                         new
                         {
-                            BookId = 6,
                             AuthorId = 1,
-                            Order = (byte)0
+                            BookId = 6
                         });
                 });
 
             modelBuilder.Entity("WebShopReactCore.Models.Book", b =>
                 {
-                    b.Property<int>("BookId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -153,14 +146,14 @@ namespace WebShopReactCore.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BookId");
+                    b.HasKey("Id");
 
                     b.ToTable("Books");
 
                     b.HasData(
                         new
                         {
-                            BookId = 1,
+                            Id = 1,
                             Description = "Falska förespeglingar är en spännande och aktuell deckare där Maria Kallio tvingas att ompröva en hel del av det hon tidigare tagit för givet.",
                             ISBN = "91-0-011026-4",
                             PictureRef = "/Images/falska-förespeglingar.jpg",
@@ -169,7 +162,7 @@ namespace WebShopReactCore.Migrations
                         },
                         new
                         {
-                            BookId = 2,
+                            Id = 2,
                             Description = "När Elin en dag hittar en förlovningsring i pojkvännen Zacks ficka får hon panik. Hon packar en väska och beger sig brådstörtat till Hallands Väderö - en plats som hon svurit på att aldrig någonsin återvända till. Här får hon dela bostad med Anja, en äldre dam som kommit till ön för att måla. Anja släpper inte gärna någon för nära inpå livet, men när hon ser vilken av hennes tavlor som Elin uppslukas av förstår hon att Elin inte är som alla andra.",
                             ISBN = "978-91-7475-228-1",
                             PictureRef = "/Images/om-du-bara-visste.jpg",
@@ -178,7 +171,7 @@ namespace WebShopReactCore.Migrations
                         },
                         new
                         {
-                            BookId = 3,
+                            Id = 3,
                             Description = "I Nätternas gräs vandrar berättaren Jean genom Paris på spaning efter Dannie, den gåtfulla kvinna han älskade fyrtio år tidigare och som försvann under mystiska omständigheter utan att lämna några spår efter sig. En svart anteckningsbok fullklottrad med namn på personer och platser, med adresser, telefonnummer och tidningsnotiser blir hans hjälp mot glömskan, hans vägvisare till det förgångna.",
                             ISBN = "978-91-86497-30-9",
                             PictureRef = "/Images/nätternas-gräs.jpg",
@@ -187,7 +180,7 @@ namespace WebShopReactCore.Migrations
                         },
                         new
                         {
-                            BookId = 5,
+                            Id = 5,
                             Description = "En roman om ett brott",
                             ISBN = "9118220614",
                             PictureRef = "/Images/den-vedervärdige-mannen-från-säffle",
@@ -196,7 +189,7 @@ namespace WebShopReactCore.Migrations
                         },
                         new
                         {
-                            BookId = 6,
+                            Id = 6,
                             Description = "Kriminalkommissarie Maria Kallio ser på en direktsänd talk-show om prostitution i teve. Kalabalik utbryter i studion och kamerorna slocknar. Strax därefter ringer Marias mobil: en kvinna har hittats död i tevehuset.     Kvinnan, Lulu Nightingale, är en känd prostituerad med en rad högt uppsatta personer i sin kundkrets. Lulu har dött av cyanidförgiftning strax före sändning och allt tyder på mord. Raden av misstänkta är begränsad eftersom programmet bygger på överraskningsprincipen och bara några få kände till att hon skulle medverka.     Men pusslet blir svårare att lägga än så och Maria Kallio tvingas gång på gång byta spår i utredningen. Finns det någon koppling mellan den mördade Lulu och den svårt sargade och sannolikt prostituerade kvinna som nyligen försvunnit från ett sjukhus? Kan den ryska maffian vara inblandad? Eller finns motivet att hämta i Lulus kundkrets? När en av de misstänkta hittas död  efter vad som ser ut som ett självmord  och tar på sig skulden för mordet på Lulu, blir fallet ännu mer komplicerat. Är det sanningen som vederbörande efterlämnat eller finns det en mördare som inte låter sig stoppas av någon? Maria Kallio, som brottas med ett trängt privatliv och en oförstående chef, står återigen i ett vägskäl i utredningen men blir allt mer övertygad om i vilken riktning hon ska gå  något hon tvingas betala ett högt, personligt pris för.     Liksom i sina tidigare böcker berättar Leena Lehtolainen i Studio Näktergalen om laddade och samtidsrelaterade frågor.",
                             ISBN = "978-91-0011315-5",
                             PictureRef = "/Images/studio-näktergalen.jpg",
@@ -260,13 +253,13 @@ namespace WebShopReactCore.Migrations
             modelBuilder.Entity("WebShopReactCore.Models.AuthorBook", b =>
                 {
                     b.HasOne("WebShopReactCore.Models.Author", "Author")
-                        .WithMany("BooksLink")
+                        .WithMany()
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WebShopReactCore.Models.Book", "Book")
-                        .WithMany("AuthorsLink")
+                        .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -293,16 +286,6 @@ namespace WebShopReactCore.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("WebShopReactCore.Models.Author", b =>
-                {
-                    b.Navigation("BooksLink");
-                });
-
-            modelBuilder.Entity("WebShopReactCore.Models.Book", b =>
-                {
-                    b.Navigation("AuthorsLink");
                 });
 
             modelBuilder.Entity("WebShopReactCore.Models.Order", b =>

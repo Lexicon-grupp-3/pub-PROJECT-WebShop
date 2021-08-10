@@ -17,7 +17,6 @@ namespace WebShopReactCore.Data
         public DbSet<Book> Books { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
-        //public DbSet<AuthorBook> AuthorBooks { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optBuilder)
         {
@@ -29,15 +28,17 @@ namespace WebShopReactCore.Data
             base.OnModelCreating(builder);
 
             builder.Entity<AuthorBook>()
-                .HasKey(x => new { x.AuthorId, x.BookId });
-/*
-            builder.Entity<Author>()
-                .HasOne(a => a.AuthorId)
-                .withMany(a => a.AuthorBook)
-                .hasForeignKey(a => a.AuthorId);
+                .HasKey(x => new { x.BookId, x.AuthorId });
+
+            //builder.Entity<Book>().HasMany(b => b.Authors)
+            //    .WithMany(a => a.Books)
+            //    .UsingEntity<AuthorBook>(
+            //    ab => ab.HasOne(b => b.Author)
+            //    .WithMany().HasForeignKey(a => a.AuthorId),
+            //    ab => ab.HasOne(a => a.Book)
+            //    .WithMany().HasForeignKey(b => b.BookId));
 
             builder.SeedProducts();
-*/
         }
     }
 }

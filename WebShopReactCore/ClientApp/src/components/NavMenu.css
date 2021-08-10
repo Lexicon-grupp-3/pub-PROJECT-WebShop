@@ -14,5 +14,16 @@ html {
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.pageLogo {
+    border: groove 3px gold;
+    box-shadow: 2px 3px #f7b731;
+}
+
+.text-dark {
+    color: #4b6584 !important;
+    font-size:1em;
+    font-weight:500;
 }
