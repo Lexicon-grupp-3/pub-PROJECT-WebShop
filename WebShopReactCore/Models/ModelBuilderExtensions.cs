@@ -81,7 +81,7 @@ namespace WebShopReactCore.Models
                     BookId = 5,
                     Title = "Den vedervärdige mannen från Säffle",
                     Description = "En roman om ett brott",
-                    PictureRef = "/Images/den-vedervärdige-mannen-från-säffle",
+                    PictureRef = "/Images/den-vedervärdige-mannen-från-säffle.jpg",
                     ISBN = "9118220614",
                     Price = 30.00M
                 },

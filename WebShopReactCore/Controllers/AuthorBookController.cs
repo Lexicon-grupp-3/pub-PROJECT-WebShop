@@ -54,5 +54,11 @@ namespace WebShopReactCore.Controllers
 
             return ret;
         }
+
+        [HttpGet]
+        public List<Book> BookList1()
+        {
+            return _context.Books.Include(book => book.AuthorsLink).ThenInclude(ab => ab.Author).ToList<Book>();
+        }
     }
 }

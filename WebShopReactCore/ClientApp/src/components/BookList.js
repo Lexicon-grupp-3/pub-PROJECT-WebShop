@@ -8,9 +8,9 @@ export class BookList extends Component {
 
     
     render() {
-        const books = this.props.items;
+        const books = this.props.bookList;
         const bookItems = books.map((book) =>
-            <Book key={book.id} book={book} page={this.props.page} />
+            <Book key={book.bookId} book={book} page={this.props.page} />
         )
         if (this.props.page == "home") {
             return (

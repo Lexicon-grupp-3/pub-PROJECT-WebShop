@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { BookList } from './BookList';
+import './styles/Books.css';
 
 export class Books extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ export class Books extends Component {
     }
 
     render() {
-        let content = this.state.loading ? <p><strong>Data Loading ...</strong></p> : <BookList items={this.state.bookList} page={this.props.page} />;
+        let content = this.state.loading ? <p><strong>Data Loading ...</strong></p> : <BookList bookList={this.state.bookList} page={this.props.page} />;
 
         return (
             <div className="booklist-home">

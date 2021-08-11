@@ -1,11 +1,11 @@
 ﻿import React, { Components } from 'react';
-import './Footer.css';
+import './styles/Footer.css';
 
 function Footer() {
     return (
-        <div className="footer border-top box-shadow">
+        <footer className="footer mt-auto border-top box-shadow">
             Copyright &copy; 2021 Chris, <span className="camilla">Camilla</span> &amp; <span className="tom">Tom</span>
-            </div>
+            </footer>
             );
             }
 

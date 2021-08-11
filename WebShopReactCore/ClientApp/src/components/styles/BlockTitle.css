@@ -1,0 +1,19 @@
+﻿.pageTitle {
+    font-size:2.5em;
+    font-weight:900;
+    text-transform: uppercase;
+    text-shadow: 2px 1px seagreen;
+}
+
+.bookTitle{
+color: navy;
+    font-size: 1.2em;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.default {
+    color: black;
+    font-size: 2em;
+    font-weight: 900;
+}

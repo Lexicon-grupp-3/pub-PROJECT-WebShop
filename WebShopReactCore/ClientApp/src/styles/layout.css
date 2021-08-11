@@ -4,11 +4,24 @@ body {
 }
 
 #root{
-    height:100vh;
+    min-height:100vh;
+    top:0px;
+    padding:0;
+    margin:0;
+    border:0;
 }
 
-.page-wrapper{
-    height:100vh;
+.page-wrapper {
+    position: relative;
+    min-height: 100vh;
+    top: 0px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.page-container {
+    padding-bottom: calc(60px + 3em);
 }
 .container{
     display:flex;

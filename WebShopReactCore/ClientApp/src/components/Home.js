@@ -1,12 +1,15 @@
 ﻿import React, { Component } from 'react';
 import { Books } from './Books';
-import './Home.css';
+import { BlockTitle as Title } from './BlockTitle';
+import { SearchBar as Search } from './SearchBar';
+import './styles/Home.css';
 
 export class Home extends Component {
     render() {
         return (
             <div>
-                <h1 className="pageHeadline">Välkommen till Crazy Arts Boklåda</h1>
+                <Title titleType="pagehead" title="Välkommen till Crazy Arts Boklåda" />
+                <Search />
                 <Books page="home" />
             </div>
             );
