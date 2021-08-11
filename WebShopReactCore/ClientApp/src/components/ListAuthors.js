@@ -2,20 +2,38 @@ import React, { Component } from 'react';
 import authService from './api-authorization/AuthorizeService'
 import { useParams, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { AuthorDetail } from './AuthorDetail';
 
 
 export class ListAuthors extends Component {
     static displayName = ListAuthors.name;
-    static history = useHistory;
+    static history1 = useHistory;
     static param1 = useParams;
 
     constructor(props) {
         super(props);
-        this.state = { authors: [], loading: true };
+        this.state = { aId: 0, authors: [], loading: true };
+        this.detalj = this.detalj.bind(this);
+        this.tillbaka = this.tillbaka.bind(this);
     }
 
     componentDidMount() {
         this.populateAuthorData();
+    }
+
+    detalj() {
+        let zzz = 13;
+        zzz = 43;
+        this.setState({
+            aId: 2
+        })
+    }
+    tillbaka() {
+        let xxx = 0;
+        xxx = 3;
+        this.setState({
+            aId: 0
+        })
     }
 
     static renderAuthorsTable(authors) {
@@ -25,65 +43,84 @@ export class ListAuthors extends Component {
         //const redirect = () => {
         //    history.push('/author-detail')
         //}
-
         return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Efternamn</th>
-                        <th>Förnamn</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {authors.listOfAuthors.map(author =>
-                        <tr key={author.id}>
-                            <td>{author.id}</td>
-                            <td>{author.lastName}</td>
-                            <td>{author.firstName}</td>
-                            <td>
-                                {/*<button type="button" onClick={this.handleClick.bind(this)}>*/}
-                                {/*    {this.props.button_text}*/}
-                                {/*</button>*/}
-                                {/*<button type="button" onClick={redirect}>*/}
-                                {/*<Link to="/author-detail/:id">*/}
-                                <Link to={'/author-detail/${author.id}'}>
-                                    <button type="button">Visa</button>
-                                </Link>
-
-                                {/*<button type="button" onClick={"/author-detail"}>*/}
-                                {/*    {"Visa"}*/}
-                                {/*</button>*/}
-                                <button type="button" onClick={"() => {history.push('/author-detail/${author.id}')"}>
-                                    {"Ändra"}
-                                </button>
-                                <button type="button" onClick={"xxx"}>
-                                    {"Ta bort"}
-                                </button>
-                                {/*<button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>*/}
-                                {/*<button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>*/}
-
-
-                            </td>
+            <div>
+                <table className='table table-striped' aria-labelledby="tabelLabel">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Efternamn</th>
+                            <th>Förnamn</th>
                         </tr>
-                    )}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {authors.listOfAuthors.map(author =>
+                            <tr key={author.id}>
+                                <td>{author.id}</td>
+                                <td>{author.lastName}</td>
+                                <td>{author.firstName}</td>
+                                <td>
+                                    {/*<button type="button" onClick={this.handleClick.bind(this)}>*/}
+                                    {/*    {this.props.button_text}*/}
+                                    {/*</button>*/}
+                                    {/*<button type="button" onClick={redirect}>*/}
+                                    {/*<Link to="/author-detail/:id">*/}
+                                    <Link to={'/author-detail/${author.id}'}>
+                                        <button type="button">Visa</button>
+                                    </Link>
+
+                                    {/*<button type="button" onClick={"/author-detail"}>*/}
+                                    {/*    {"Visa"}*/}
+                                    {/*</button>*/}
+                                    <button type="button" onClick={"yyy"}>
+                                        {"Ändra"}
+                                    </button>
+                                    <button type="button" onClick={"xxx"}>
+                                        {"Ta bort"}
+                                    </button>
+                                    {/*<button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>*/}
+                                    {/*<button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>*/}
+                                    <button className="btn btn-primary" onClick={this.detalj}>Solsken2</button>
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+                <button className="btn btn-primary" onClick={this.detalj}>Solsken3</button>
+            </div>
         );
     }
 
     render() {
-        let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : ListAuthors.renderAuthorsTable(this.state.authors);
+        const isStart = (this.state.aId === 0)
+        if (isStart) {
+            let contents = this.state.loading
+                ? <p><em>Loading...</em></p>
+                : ListAuthors.renderAuthorsTable(this.state.authors);
 
-        return (
-            <div>
-                <h1 id="tabelLabel" >Författare</h1>
-                {contents}
-            </div>
-        );
+            return (
+                <div>
+                    <div>
+                        <h1 id="tabelLabel" >Författare</h1>
+                        {contents}
+                        <button className="btn btn-primary" onClick={this.detalj}>Detalj</button>
+                    </div>
+                </div>
+            );
+        }
+        else {
+            return (
+                <div>
+                    <p>Här händer något annat</p>
+                    {<AuthorDetail
+
+                    />}
+                    <button className="btn btn-primary" onClick={this.tillbaka}>Tillbaka</button>
+                </div>
+            )
+        }
     }
+
 
     async populateAuthorData() {
         //const token = await authService.getAccessToken();
