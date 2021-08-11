@@ -19,47 +19,38 @@ namespace WebShopReactCore.Controllers
             _context = ctx;
         }
 
-        /*
-        /// <summary>
-        /// Collects all authors from the database.
-        /// </summary>
-        /// <returns>Returns an AuthorsViewModel containing a list of Author items.</returns>
-        [HttpGet]
-        public AuthorsViewModel AuthorList()
-        {
-            AuthorsViewModel authors = new AuthorsViewModel();
-            authors.ListOfAuthors = _context.Authors.ToList();
-
-            return authors;
-        }
-        */
-
-        /*
-        /// <summary>
-        /// Collects all books from the database.
-        /// </summary>
-        /// <returns>Returns a BooksViewModel containing a list of Book items.</returns>
-        [HttpGet]
-        public BooksViewModel BookList()
-        {
-            BooksViewModel books = new BooksViewModel();
-            books.ListOfBooks = _context.Books.Include(b => b.Authors).ToList();
-            //books.ListOfBooks = new List<Book>();
-            //foreach (var book in _context.Books.ToList())
-            //{
-            //    book.Authors = _context.Authors.Where(ab => ab.Id == book.Id).ToList();
-            //    books.ListOfBooks.Add(book);
-            //}
-
-            return books;
-        }
-        */
 
         [HttpGet]
-        public List<Book> BookList()
+        public List<BookItem> BookList()
         {
-            var ret = _context.Books.ToList();
-                //.Include(book => book.AuthorsLink).ThenInclude(ab => ab.Author).ToList();
+            List<BookItem> ret = new List<BookItem>();
+            List<Book> items = _context.Books.Include(book => book.AuthorsLink).ThenInclude(ab => ab.Author).ToList();
+            
+            foreach(Book item in items)
+            {
+                BookItem tmp = new BookItem();
+
+                tmp.BookId = item.BookId;
+                tmp.Description = item.Description;
+                tmp.ISBN = item.ISBN;
+                tmp.PictureRef = item.PictureRef;
+                tmp.Price = item.Price;
+                tmp.Title = item.Title;
+                tmp.Authors = new List<AuthorItem>();
+
+                foreach(AuthorBook at in item.AuthorsLink)
+                {
+                    AuthorItem tmpAuth = new AuthorItem();
+
+                    tmpAuth.AuthorId = at.AuthorId;
+                    tmpAuth.FirstName = at.Author.FirstName;
+                    tmpAuth.LastName = at.Author.LastName;
+
+                    tmp.Authors.Add(tmpAuth);
+                }
+
+                ret.Add(tmp);
+            }
 
             return ret;
         }

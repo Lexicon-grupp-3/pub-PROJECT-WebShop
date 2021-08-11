@@ -22,6 +22,19 @@ namespace WebShopReactCore.Models
         public string FullName => $"{FirstName} {LastName}";
     }
 
+    public class AuthorItem
+    {
+        public int AuthorId { get; set; }
+        [DisplayName("Förnamn")]
+        public string FirstName { get; set; }
+        [DisplayName("Efternamn")]
+        public string LastName { get; set; }
+        [DisplayName("Namn")]
+        public string FullName => $"{FirstName} {LastName}";
+
+        public List<BookItem> Books { get; set; }
+    }
+
 
     public class AuthorBook
     {
@@ -37,11 +50,6 @@ namespace WebShopReactCore.Models
 
     }
 
-    /*public class AuthorsViewModel
-    {
-        public List<Author> ListOfAuthors { get; set; }
-    }*/
-
     public class Book
     {
         [Key]
@@ -52,6 +60,17 @@ namespace WebShopReactCore.Models
         public string ISBN { get; set; }
         public decimal Price { get; set; }
         public ICollection<AuthorBook> AuthorsLink { get; set; }
+    }
+
+    public class BookItem 
+    {
+        public int BookId { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string PictureRef { get; set; }
+        public string ISBN { get; set; }
+        public decimal Price { get; set; }
+        public List<AuthorItem> Authors { get; set; }
     }
 
     /*public class BooksViewModel
