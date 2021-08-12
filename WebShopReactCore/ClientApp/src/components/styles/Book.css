@@ -3,15 +3,6 @@
     border:2px solid black;
     padding:5px;
     display:flex;
-    
-}
-
-.bookISBN{
-    color:navy;
-    font-size:1em;
-    font-weight:normal;
-}
-
-.titleAuthors{
-    display:inline;
+    flex-direction:column;
+    margin:2em;
 }

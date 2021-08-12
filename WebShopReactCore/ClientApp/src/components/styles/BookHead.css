@@ -1,0 +1,15 @@
+﻿
+.bookHeadWrapper{
+    display:flex;
+}
+
+.titleAuthors{
+    margin-left:1em;
+    position: relative;
+    margin-bottom: 1em;
+}
+
+    .titleAuthors p {
+        margin: 0px;
+        padding: 0px;
+    }

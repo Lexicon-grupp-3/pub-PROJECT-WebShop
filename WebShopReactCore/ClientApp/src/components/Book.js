@@ -1,8 +1,6 @@
-﻿import { extend } from 'jquery';
-import React, { Component } from 'react';
-import { BlockTitle as Title } from './BlockTitle';
-import { BookAuthors as Authors } from './BookAuthors';
-import { BookImage as Image } from './BookImage';
+﻿import React, { Component } from 'react';
+import { BookHead } from './BookHead';
+import { BookMiddle } from './BookMiddle';
 import './styles/Book.css';
 
 export class Book extends Component {
@@ -23,12 +21,8 @@ export class Book extends Component {
     render() {
         return (
             <div className="bookContainer">
-                <Image src={this.props.book.pictureRef} page={this.props.page} />
-                <div className="titleAuthors">
-                    <Title title={this.props.book.title} titleType="booktitle" />
-                    <Authors authors={this.props.book.authors} page={this.props.page} />
-                </div><br />
-                <span className="bookISBN">{this.props.book.isbn}</span>
+                <BookHead book={this.props.book} page={this.props.page} />
+                <BookMiddle book={this.props.book} page={this.props.page} />
 
             </div>
         )

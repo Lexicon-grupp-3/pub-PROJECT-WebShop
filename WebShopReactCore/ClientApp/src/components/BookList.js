@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { Book } from './Book';
+import './styles/BookList.css';
 
 export class BookList extends Component {
     constructor(props) {
@@ -9,12 +10,13 @@ export class BookList extends Component {
     
     render() {
         const books = this.props.bookList;
-        const bookItems = books.map((book) =>
-            <Book key={book.bookId} book={book} page={this.props.page} />
-        )
+        
         if (this.props.page == "home") {
+            const bookItems = books.map((book) =>
+                <Book key={book.bookId} book={book} page={this.props.page} />);
+
             return (
-                <div>BookList Class
+                <div className="bookList">
                     {bookItems}
                 </div>
             )

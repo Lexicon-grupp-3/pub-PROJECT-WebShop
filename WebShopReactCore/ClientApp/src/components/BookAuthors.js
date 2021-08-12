@@ -28,7 +28,7 @@ export class BookAuthors extends Component {
 
         return (
             <p className="authorsString">
-                {content}
+                {text}
             </p>
         );
 

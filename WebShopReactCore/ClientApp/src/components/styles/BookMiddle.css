@@ -1,0 +1,16 @@
+﻿.bookPrice{
+    font-weight:bold;
+    text-align:right;
+}
+
+.bookISBN {
+    color: navy;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+.middleWrapper{
+    display:flex;
+    justify-content:space-between;
+}
+

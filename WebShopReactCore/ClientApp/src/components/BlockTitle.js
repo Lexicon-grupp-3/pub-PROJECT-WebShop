@@ -7,18 +7,19 @@ export class BlockTitle extends Component {
     }
 
     render() {
+        let classText = "";
         if (this.props.titleType == "pagehead") {
-            return (
-                <p className="pageTitle">{this.props.title}</p>
-            );
+            classText = "pageTitle";
         }
         else if (this.props.titleType == "booktitle") {
-            return (
-                <p className="bookTitle">{this.props.title}</p>
-            );
+            classText = "bookTitle";
+        }
+        else {
+            classText = "default";
         }
         return (
-            <p className="default">{this.props.title}</p>
+            <p className={classText}>{this.props.title}</p>
         );
+        
     }
 }
