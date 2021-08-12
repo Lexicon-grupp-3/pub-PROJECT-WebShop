@@ -21,16 +21,19 @@ export class ListAuthors extends Component {
         this.populateAuthorData();
     }
 
-    detalj() {
+   detalj() {
         let zzz = 13;
-        zzz = 43;
+        this.setState({
+            aId: 2
+        })
+    }
+    detalj2() {
         this.setState({
             aId: 2
         })
     }
     tillbaka() {
         let xxx = 0;
-        xxx = 3;
         this.setState({
             aId: 0
         })
@@ -38,11 +41,6 @@ export class ListAuthors extends Component {
 
     static renderAuthorsTable(authors) {
 
-        //let history = useHistory();
-
-        //const redirect = () => {
-        //    history.push('/author-detail')
-        //}
         return (
             <div>
                 <table className='table table-striped' aria-labelledby="tabelLabel">
