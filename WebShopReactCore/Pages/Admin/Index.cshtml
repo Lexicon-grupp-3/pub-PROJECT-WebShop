@@ -1,0 +1,29 @@
+﻿@model IEnumerable<AppUserData>
+
+<h1 class="bg-info text-white">Manage Users</h1>
+
+<table class="table table-sm table-bordered table-bordered">
+    <tr><th>ID</th><th>Name</th><th>Email</th><th>City</th><th>Country</th><th>Update</th><th>Delete</th></tr>
+    @foreach (AppUserData user in Model)
+    {
+        //string tmpCity = 
+        //string tmpCountry = (user.Country != null) ? user.Country.Name : "";
+        <tr>
+            <td>@user.Id</td>
+            <td>@user.User.LastName, @user.User.FirstName</td>
+            <td>@user.User.Email</td>
+            @*<td>@user.City.Name</td>
+            <td>@user.Country.Name</td>*@
+            <td><a class="btn btn-sm btn-primary" asp-action="EditUser" asp-route-id="@user.User.Id">Update</a></td>
+            <td>
+                <form asp-action="DeleteUser" asp-route-id="@user.User.Id" method="post">
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<a asp-action="CreateUser" class="btn btn-secondary">New User</a>

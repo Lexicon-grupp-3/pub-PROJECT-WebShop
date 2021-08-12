@@ -46,6 +46,24 @@
     <Folder Include="ClientApp\src\components\NewFolder\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Pages\Admin\CreateCity.cshtml" />
+    <None Include="Pages\Admin\CreateCountry.cshtml" />
+    <None Include="Pages\Admin\CreateUser.cshtml" />
+    <None Include="Pages\Admin\EditCity.cshtml" />
+    <None Include="Pages\Admin\EditCountry.cshtml" />
+    <None Include="Pages\Admin\EditUser.cshtml" />
+    <None Include="Pages\Admin\Index.cshtml" />
+    <None Include="Pages\Admin\ListCities.cshtml" />
+    <None Include="Pages\Admin\ListCountries.cshtml" />
+    <None Include="Pages\Home\Index.cshtml" />
+    <None Include="Pages\Home\ListPeople.cshtml" />
+    <None Include="Pages\Home\Privacy.cshtml" />
+    <None Include="Pages\Role\Create.cshtml" />
+    <None Include="Pages\Role\Index.cshtml" />
+    <None Include="Pages\Role\Update.cshtml" />
+  </ItemGroup>
+
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

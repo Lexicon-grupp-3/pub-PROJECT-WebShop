@@ -1,0 +1,25 @@
+﻿@*@model CityData
+
+<h1 class="bg-info text-white">Update City</h1>
+
+<a asp-action="ListCities" class="btn btn-secondary">Back</a>
+
+
+
+<form asp-action="EditCity" method="post">
+    <div class="form-group">
+        <label asp-for="Id"></label>
+        <input asp-for="Id" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Country"></label>
+        <input asp-for="Country" class="form-control" />
+        <input asp-for="CountryId" class="form-control" hidden />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>*@
