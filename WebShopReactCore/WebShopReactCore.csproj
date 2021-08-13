@@ -43,10 +43,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\components\NewFolder\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Pages\Admin\CreateCity.cshtml" />
     <None Include="Pages\Admin\CreateCountry.cshtml" />
     <None Include="Pages\Admin\CreateUser.cshtml" />

@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { Route } from 'react-router';
-import { Routes } from 'react-router-dom';
+import { Routes, Switch } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
@@ -14,9 +14,11 @@ export default class App extends Component {
     render() {
         return (
             <Layout>
-                <Route exact path='/' component={Home} />
-                <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
-                {/*<Route path='*' component={ResourceNotFound} />*/}
+                <Switch>
+                    <Route exact path='/' component={Home} />
+                    <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
+                    <Route path='*' component={ResourceNotFound} />
+                </Switch>
             </Layout>
         );
     }
