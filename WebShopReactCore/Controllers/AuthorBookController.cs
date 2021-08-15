@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,20 +56,55 @@ namespace WebShopReactCore.Controllers
 
             return authorD;
         }
-
         [HttpPost]
-        public AuthorDetailViewModel AuthorDetail2()
-        { 
+        public AuthorDetailViewModel AuthorNew([FromBody] Author author)
+        {
             AuthorDetailViewModel authorD = new AuthorDetailViewModel();
+            if (author.Id == 0)  //create
+            {
+                _context.Authors.Add(author);
+                _context.SaveChanges();
+            }
+            else //update
+            {
+                Author author1 = _context.Authors.Find(author.Id);
+
+                author1.FirstName = author.FirstName;
+                author1.LastName = author.LastName;
+                //_context.Entry(author1).State = EntityState.Modified;
+                _context.Authors.Update(author1);
+                _context.SaveChanges();
+            }
+            authorD.FirstName = author.FirstName;
+            authorD.LastName = author.LastName;
+
             return authorD;
         }
+        //[HttpPost]
+        //public ActionResult AuthorNew(int id)
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult AuthorNew(IFormCollection collection)
+        //{
+        //    return View();
+        //}
+
+
         [HttpPost]
-        public AuthorDetailViewModel AuthorDetail2(int idx)
+        public AuthorDetailViewModel AuthorEdit(Author author)
         {
             AuthorDetailViewModel authorD = new AuthorDetailViewModel();
             return authorD;
         }
-
+        [HttpPost]
+        public AuthorDetailViewModel AuthorEdit(int id)
+        {
+            AuthorDetailViewModel authorD = new AuthorDetailViewModel();
+            return authorD;
+        }
 
 
 
@@ -124,7 +160,6 @@ namespace WebShopReactCore.Controllers
                 return View();
             }
         }
-
         // GET: AuthorBookController/Edit/5
         public ActionResult Edit(int id)
         {
