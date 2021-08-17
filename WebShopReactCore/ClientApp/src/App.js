@@ -2,6 +2,7 @@
 import { Route } from 'react-router';
 import { Routes, Switch, BrowserRouter as Router } from 'react-router-dom';
 import { Layout } from './components/Layout';
+import BookDetail from './components/BookDetail';
 import Home  from './components/Home';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
@@ -21,6 +22,7 @@ export default class App extends Component {
             loading: true
         };
         this.routerRef = React.createRef();
+        this.handleBookDetail = this.handleBookDetail.bind(this);
     }
 
     async componentDidMount() {
@@ -28,7 +30,16 @@ export default class App extends Component {
         const promise = await fetch('AuthorBook/BookList');
         const bookList = await promise.json();
         cart = cart ? JSON.parse(cart) : {};
-        this.setState({ bookList, loading: false, cart });
+        const book = {};
+        this.setState({ book, bookList, loading: false, cart });
+    }
+
+    async handleBookDetail(bookItem) {
+        let book =bookItem.book; 
+        //book = {};
+        this.setState({ book });
+        let tmp = this.state.book;
+        this.routerRef.current.history.push("/bookdetail");
     }
 
     render() {
@@ -42,13 +53,15 @@ export default class App extends Component {
                     login: this.login,
                     addProduct: this.addProduct,
                     clearcart: this.clearCart,
-                    checkout: this.checkout
+                    checkout: this.checkout,
+                    handleBookDetail: this.handleBookDetail
                 }}
             >
                 <Router basename={baseUrl} ref={this.routerRef}>
                     <Layout>
                         <Switch>
                             <Route exact path='/' component={Home} />
+                            <Route exact path="/bookdetail" component={BookDetail} />
                             <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
                             <Route path='*' component={ResourceNotFound} />
                         </Switch>

@@ -3,15 +3,14 @@ import { Book } from './Book';
 import withContext from '../withContext';
 
 const BookDetail = props => {
-    
-    const book = props.context.currentBook;
+
+    const book = props.context.book;
     let tmp;
-        console.log("detail: " + book);
+    console.log("detail: " + book);
     return (
         <>
-        <p>{book.title}</p>
-           /* {book.title != "undefined" ? (<Book key={book.bookId} book={book} showBookDetail={props.showBookDetail} page="bookDetail" />) : (<p>No Book</p>)}*/
-            </>
+            {book.title != "undefined" ? (<Book key={book.bookId} book={book} showBookDetail={props.showBookDetail} page="bookDetail" />) : (<p>No Book</p>)}
+        </>
     );
 }
 

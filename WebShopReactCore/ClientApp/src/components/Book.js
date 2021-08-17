@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import { BookHead } from './BookHead';
+import BookHead  from './BookHead';
 import { BookMiddle } from './BookMiddle';
 import './styles/Book.css';
 
@@ -23,7 +23,6 @@ export class Book extends Component {
             <div className="bookContainer">
                 <BookHead book={this.props.book} page={this.props.page} />
                 <BookMiddle book={this.props.book} page={this.props.page} />
-
             </div>
         )
     }

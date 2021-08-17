@@ -2,22 +2,26 @@
 import { BlockTitle as Title } from './BlockTitle';
 import { BookAuthors as Authors } from './BookAuthors';
 import { BookImage as Image } from './BookImage';
+import withContext from '../withContext';
 import './styles/BookHead.css';
 
-export class BookHead extends Component {
-    constructor(props) {
-        super(props);
-    }
+const BookHead = (props) => {
 
-    render() {
-        return (
-            <div className="bookHeadWrapper">
-                <Image src={this.props.book.pictureRef} page={this.props.page} />
-                <div className="titleAuthors">
-                    <Title title={this.props.book.title} titleType="booktitle" />
-                    <Authors authors={this.props.book.authors} page={this.props.page} />
-                </div>
+    return (
+        <div className="bookHeadWrapper">
+            <Image src={props.book.pictureRef} page={props.page} />
+            <div className="titleAuthors">
+                <button onClick={() =>
+                    props.context.handleBookDetail({
+                        book: props.book,
+                        id: props.book.bookId
+                    })} href="#">
+                    <Title title={props.book.title} book={props.book} titleType="booktitle" />
+                </button>
+                <Authors authors={props.book.authors} page={props.page} />
             </div>
-        );
-    }
+        </div>
+    );
 }
+
+export default withContext(BookHead);
