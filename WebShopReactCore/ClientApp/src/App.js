@@ -36,9 +36,7 @@ export default class App extends Component {
 
     async handleBookDetail(bookItem) {
         let book =bookItem.book; 
-        //book = {};
         this.setState({ book });
-        let tmp = this.state.book;
         this.routerRef.current.history.push("/bookdetail");
     }
 
