@@ -5,6 +5,7 @@ import { Layout } from './components/Layout';
 import BookDetail from './components/BookDetail';
 import Home from './components/Home';
 import Cart from './components/Cart';
+import Orders from './components/Orders';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
 import { ApplicationPaths } from './components/api-authorization/ApiAuthorizationConstants';
@@ -78,6 +79,7 @@ export default class App extends Component {
                             <Route exact path='/' component={Home} />
                             <Route exact path='/bookdetail' component={BookDetail} />
                             <Route exact path="/cart" component={Cart} />
+                            <AuthorizeRoute exact path='/orders' component={Orders} />
                             <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
                             <Route path='*' component={ResourceNotFound} />
                         </Switch>
