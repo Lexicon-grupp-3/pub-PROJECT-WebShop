@@ -7,7 +7,17 @@
 
 .totalAmount{
     text-align:right;
-    color:red;
+    color:navy;
+    font-size:1.2em;
     font-weight:700;
     min-width:100%;
+    margin-top:5em;
+}
+
+.totalAmount button{
+    margin-right:2em;
+}
+
+.removeItem{
+   cursor:pointer;
 }

@@ -28,7 +28,7 @@ const Cart = props => {
                                         <div className="bookPrice">{cart[key].book.price.toFixed(2)}Kr</div>
                                     </div>
                                     <div className="col">
-                                        <div className="media-right"
+                                        <div className="removeItem"
                                             onClick={() => props.context.removeFromCart(key)}
                                         >
                                             <i className="far fa-trash-alt"></i>
@@ -46,14 +46,16 @@ const Cart = props => {
 
                 ) : (
                     <div class="col">
-                        Korgen tom!
+                        Korgen är tom!
                     </div>
                 )
                     
                 }
                 
             </div>
-            <div className="totalAmount">
+                <div className="totalAmount">
+                    <button type="button" className="btn btn-danger"
+                        onClick={() => props.context.emptyCart()}                   >Töm Korgen</button>
                     Totalt: {totalAmount.toFixed(2)}Kr
                     </div>
         </div >

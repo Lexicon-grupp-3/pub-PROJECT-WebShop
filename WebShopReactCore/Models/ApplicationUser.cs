@@ -13,17 +13,10 @@ namespace WebShopReactCore.Models
 
         public ApplicationUser() : base() { }
 
-        public ApplicationUser(ApplicationUser user)
+        public ApplicationUser(ApplicationUser user) : base()
         {
             this.user = user;
         }
-
-        [ForeignKey("CityClass")]
-        public int CityId { get; set; }
-
-
-        [ForeignKey("CountryClass")]
-        public int CountryId { get; set; }
 
         public ApplicationUser User { get { return this.user; } }
 

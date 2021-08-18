@@ -9,6 +9,7 @@ import Orders from './components/Orders';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
 import { ApplicationPaths } from './components/api-authorization/ApiAuthorizationConstants';
+import authService, { AuthenticationResultStatus } from './components/api-authorization/AuthorizeService';
 import { ResourceNotFound } from './components/ResourceNotFound';
 
 import Context from './Context';
@@ -21,19 +22,39 @@ export default class App extends Component {
             cart: {},
             bookList: [],
             book: {},
-            loading: true
+            loading: true,
+            userName: null,
+            user: null,
+            isAuthenticated: false
         };
         this.routerRef = React.createRef();
         this.handleBookDetail = this.handleBookDetail.bind(this);
+        authService.subscribe(this.handleAuthorization);
     }
 
     async componentDidMount() {
         let cart = localStorage.getItem("cart");
+        let userId = localStorage.getItem("userId");
         const promise = await fetch('AuthorBook/BookList');
         const bookList = await promise.json();
         cart = cart ? JSON.parse(cart) : {};
         const book = {};
-        this.setState({ book, bookList, loading: false, cart });
+        const [isAuthenticated, user] = await Promise.all([authService.isAuthenticated(), authService.getUser()])
+        const userName = user != null ? user.name : "";
+        this.setState({ isAuthenticated, userName, user, book, bookList, loading: false, cart });
+        this._subscription = authService.subscribe(() => this.handleAuthorization());
+    }
+
+    componentWillUnmount() {
+        authService.unsubscribe(this._subscription);
+    }
+
+    async handleAuthorization() {
+        const [isAuthenticated, user] = await Promise.all([authService.isAuthenticated(), authService.getUser()])
+        this.setState({
+            isAuthenticated,
+            userName: user && user.name
+        });
     }
 
     addToCart = cartItem => {
@@ -51,10 +72,35 @@ export default class App extends Component {
         this.setState({ cart });
     }
 
+    emptyCart = () => {
+        let cart = {};
+        localStorage.removeItem("cart");
+        this.setState({ cart });
+    }
+
     async handleBookDetail(bookItem) {
-        let book =bookItem.book; 
+        let book = bookItem.book;
         this.setState({ book });
         this.routerRef.current.history.push("/bookdetail");
+    }
+
+    removeFromCart = cartItemId => {
+        let cart = this.state.cart;
+        delete cart[cartItemId];
+        localStorage.setItem("cart", JSON.stringify(cart));
+        this.setState({ cart });
+    }
+
+    removeUserId = props => {
+        let userId = null;
+        localStorage.removeItem("userId");
+        this.setState({ userId });
+    }
+
+    setUserId = id => {
+        let userId = id;
+        localStorage.setItem("userId", JSON.stringify(userId));
+        this.setState({ userId });
     }
 
     render() {
@@ -70,7 +116,10 @@ export default class App extends Component {
                     clearcart: this.clearCart,
                     checkout: this.checkout,
                     handleBookDetail: this.handleBookDetail,
-                    addToCart: this.addToCart
+                    addToCart: this.addToCart,
+                    emptyCart: this.emptyCart,
+                    setUserId: this.setUserId,
+                    removeUserId: this.removeUserId
                 }}
             >
                 <Router basename={baseUrl} ref={this.routerRef}>

@@ -52,17 +52,7 @@ export class ListAuthors extends Component {
   async populateAuthorData() {
     //const token = await authService.getAccessToken();
       const response = await fetch('AuthorBook');
-<<<<<<< HEAD:WebShopReactCore/ClientApp/src/components/ListAuthors.js
-      /*, {
-      headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
-<<<<<<< HEAD
-    });
-=======
-    }); 
->>>>>>> 534a2493657276e3a1faedf72482799de8acf45a
-    */
-=======
->>>>>>> feature/context:WebShopReactCore/ClientApp/src/components/OLD/ListAuthors.js
+
     const data = await response.json();
     this.setState({ authors: data, loading: false });
   }

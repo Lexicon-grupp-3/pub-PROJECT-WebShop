@@ -42,7 +42,7 @@ class NavMenu extends Component {
                                 <LoginMenu></LoginMenu>
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/cart">
-                                        <i class="fas fa-shopping-cart"></i>
+                                        <i className="fas fa-shopping-cart"></i>
                                         {Object.keys(this.props.context.cart).length}
                                     </NavLink>
                                 </NavItem>
