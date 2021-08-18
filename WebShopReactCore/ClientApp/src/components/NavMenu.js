@@ -2,9 +2,10 @@
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { LoginMenu } from './api-authorization/LoginMenu';
-import './NavMenu.css';
+import withContext from '../withContext';
+import './styles/NavMenu.css';
 
-export class NavMenu extends Component {
+class NavMenu extends Component {
     static displayName = NavMenu.name;
 
 
@@ -15,8 +16,6 @@ export class NavMenu extends Component {
         this.state = {
             collapsed: true
         };
-
-<<<<<<< HEAD
     }
 
     toggleNavbar() {
@@ -30,51 +29,21 @@ export class NavMenu extends Component {
             <header>
                 <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
                     <Container>
-                        <NavbarBrand tag={Link} to="/">WebShopReactCore</NavbarBrand>
+                        <NavbarBrand tag={Link} to="/"><img className="pageLogo" src='/CrazyArtsLogo.png' height="80px" /></NavbarBrand>
                         <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
                             <ul className="navbar-nav flex-grow">
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
                                 </NavItem>
+                                
+                                <LoginMenu></LoginMenu>
                                 <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
+                                    <NavLink tag={Link} className="text-dark" to="/cart">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        {Object.keys(this.props.context.cart).length}
+                                    </NavLink>
                                 </NavItem>
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/list-authors">{this.props.menuText}</NavLink>
-                                </NavItem>
-                                <LoginMenu>s
-=======
-  render () {
-    return (
-      <header>
-        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
-          <Container>
-            <NavbarBrand tag={Link} to="/">WebShopReactCore</NavbarBrand>
-            <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-            <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-              <ul className="navbar-nav flex-grow">
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink tag={Link} className="text-dark" to="/list-authors">Lista författare</NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink tag={Link} className="text-dark" to="/list-books">Lista böcker</NavLink>
-                </NavItem>
-                <LoginMenu>
->>>>>>> 534a2493657276e3a1faedf72482799de8acf45a
-                </LoginMenu>
                             </ul>
                         </Collapse>
                     </Container>
@@ -83,3 +52,5 @@ export class NavMenu extends Component {
         );
     }
 }
+
+export default withContext(NavMenu);

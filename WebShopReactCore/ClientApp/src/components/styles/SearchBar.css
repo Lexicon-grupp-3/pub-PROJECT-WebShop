@@ -1,0 +1,19 @@
+﻿.searchWrapper
+{
+    width:100%;
+    text-align:left;
+    padding:5px;
+    margin-bottom:2em;
+    margin-left:2em;
+}
+
+.searchWrapper input{
+    margin-left:1em;
+    margin-right:1em;
+}
+
+.searchWrapper button{
+    border-radius:5px;
+    padding-left:1em;
+    padding-right:1em;
+}

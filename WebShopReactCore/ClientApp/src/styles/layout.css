@@ -1,3 +1,31 @@
 body {
-    background-color: yellow;
+    background-color: #fed330;
+    color: #4b6584;
+}
+
+#root{
+    min-height:100vh;
+    top:0px;
+    padding:0;
+    margin:0;
+    border:0;
+}
+
+.page-wrapper {
+    position: relative;
+    min-height: 100vh;
+    top: 0px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.page-container {
+    padding-bottom: calc(60px + 3em);
+}
+.container{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    padding-top:2em;
 }

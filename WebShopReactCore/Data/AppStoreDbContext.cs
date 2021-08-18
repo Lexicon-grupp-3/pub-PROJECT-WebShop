@@ -10,29 +10,35 @@ namespace WebShopReactCore.Data
 {
     public class AppStoreDbContext : DbContext
     {
-        public AppStoreDbContext(DbContextOptions<AppStoreDbContext> options) : base(options) 
+        public AppStoreDbContext(DbContextOptions<AppStoreDbContext> options) : base(options)
         {
         }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
-        public DbSet<AuthorBook> AuthorBooks { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optBuilder)
         {
-            modelBuilder.Entity<OrderItem>()
-                .HasOne(oi => oi.Order)
-                .WithMany(o => o.OrderItems)
-                .HasForeignKey(oi => oi.OrderId);
+            base.OnConfiguring(optBuilder);
+        }
 
-            modelBuilder.Entity<AuthorBook>()
-                .HasKey(sc => new { sc.AuthorId, sc.BookId });
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
 
-            modelBuilder.Seed();
+            builder.Entity<AuthorBook>()
+                .HasKey(x => new { x.BookId, x.AuthorId });
 
-            base.OnModelCreating(modelBuilder);
+            //builder.Entity<Book>().HasMany(b => b.Authors)
+            //    .WithMany(a => a.Books)
+            //    .UsingEntity<AuthorBook>(
+            //    ab => ab.HasOne(b => b.Author)
+            //    .WithMany().HasForeignKey(a => a.AuthorId),
+            //    ab => ab.HasOne(a => a.Book)
+            //    .WithMany().HasForeignKey(b => b.BookId));
 
+            builder.SeedProducts();
         }
     }
 }

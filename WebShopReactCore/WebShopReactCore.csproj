@@ -34,10 +34,30 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\components\api-authorization\file.tsx" />
+    <None Remove="ClientApp\src\components\blockTitle.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\components\NavMenu.js" />
+    <TypeScriptCompile Include="ClientApp\src\components\BlockTitle.js" />
+    <TypeScriptCompile Include="ClientApp\src\components\OLD\NavMenu-OLD.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\Admin\CreateCity.cshtml" />
+    <None Include="Pages\Admin\CreateCountry.cshtml" />
+    <None Include="Pages\Admin\CreateUser.cshtml" />
+    <None Include="Pages\Admin\EditCity.cshtml" />
+    <None Include="Pages\Admin\EditCountry.cshtml" />
+    <None Include="Pages\Admin\EditUser.cshtml" />
+    <None Include="Pages\Admin\Index.cshtml" />
+    <None Include="Pages\Admin\ListCities.cshtml" />
+    <None Include="Pages\Admin\ListCountries.cshtml" />
+    <None Include="Pages\Home\Index.cshtml" />
+    <None Include="Pages\Home\ListPeople.cshtml" />
+    <None Include="Pages\Home\Privacy.cshtml" />
+    <None Include="Pages\Role\Create.cshtml" />
+    <None Include="Pages\Role\Index.cshtml" />
+    <None Include="Pages\Role\Update.cshtml" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

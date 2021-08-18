@@ -1,0 +1,19 @@
+﻿.footer{
+    position: absolute;
+    line-height: 60px;
+    width:100vw;
+    text-align: center;
+    bottom: 0px;
+    color:royalblue;
+    font-size:1.1em;
+    font-weight:700;
+    font-family: Rockwell , Arial, sans-serif, serif;
+}
+    
+.camilla{
+    color:red;
+}
+
+.tom{
+    color:darkgreen;
+}
