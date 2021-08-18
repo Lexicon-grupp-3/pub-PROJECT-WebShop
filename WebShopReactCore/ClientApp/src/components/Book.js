@@ -19,11 +19,21 @@ export class Book extends Component {
      */
 
     render() {
-        return (
-            <div className="bookContainer">
-                <BookHead book={this.props.book} page={this.props.page} />
-                <BookMiddle book={this.props.book} page={this.props.page} />
-            </div>
-        )
+        if (this.props.page == "home") {
+            return (
+                <div className="bookContainer">
+                    <BookHead book={this.props.book} page={this.props.page} />
+                    <BookMiddle book={this.props.book} page={this.props.page} />
+                </div>
+            )
+        }
+        else if (this.props.page == "bookDetail") {
+            return (
+                <div className="bookContainer">
+                    <BookHead book={this.props.book} page={this.props.page} />
+
+                </div>
+                )
+        }
     }
 }

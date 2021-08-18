@@ -39,7 +39,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\components\BlockTitle.js" />
-    <TypeScriptCompile Include="ClientApp\src\components\NavMenu.js" />
+    <TypeScriptCompile Include="ClientApp\src\components\OLD\NavMenu-OLD.js" />
   </ItemGroup>
 
   <ItemGroup>

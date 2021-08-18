@@ -12,7 +12,7 @@ const Home = props => {
     return (
         <div>
             <Title titleType="pagehead" title="Välkommen till Crazy Arts Boklåda" />
-            <Search />
+            {/*<Search />*/}
             {content}
         </div>
     );

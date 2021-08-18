@@ -6,10 +6,16 @@ const BookDetail = props => {
 
     const book = props.context.book;
     let tmp;
-    console.log("detail: " + book);
+    console.log("detail: " + book.title);
     return (
         <>
-            {book.title != "undefined" ? (<Book key={book.bookId} book={book} showBookDetail={props.showBookDetail} page="bookDetail" />) : (<p>No Book</p>)}
+            <Book key={book.bookId} book={book} showBookDetail={props.showBookDetail} page="bookDetail" />
+            <button onClick={() =>
+                props.context.addToCart({
+                    book: book,
+                    id: book.bookId
+                })}>Lägg till i Korg
+            </button>
         </>
     );
 }

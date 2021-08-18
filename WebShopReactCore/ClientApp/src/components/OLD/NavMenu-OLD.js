@@ -36,7 +36,21 @@ class NavMenu extends Component {
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
                                 </NavItem>
-                                
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/page-name">BookDetailsPage</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/list-authors">Lista författare</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/list-books">Lista böcker</NavLink>
+                                </NavItem>
                                 <LoginMenu></LoginMenu>
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/cart">

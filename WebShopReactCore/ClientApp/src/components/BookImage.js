@@ -7,7 +7,7 @@ export class BookImage extends Component {
     }
 
     render() {
-        if (this.props.page === "home") {
+        if (this.props.page === "home" || this.props.page === "cart") {
             return (
                 <img className="bookCoverSmall" src={this.props.src} />
             );

@@ -11,14 +11,28 @@ const BookHead = (props) => {
         <div className="bookHeadWrapper">
             <Image src={props.book.pictureRef} page={props.page} />
             <div className="titleAuthors">
-                <button onClick={() =>
-                    props.context.handleBookDetail({
-                        book: props.book,
-                        id: props.book.bookId
-                    })} href="#">
+                {(props.page == "home" || props.page  == "cart") ? (
+                    <button onClick={() =>
+                        props.context.handleBookDetail({
+                            book: props.book,
+                            id: props.book.bookId
+                        })}>
+                        <Title title={props.book.title} book={props.book} titleType="booktitle" />
+                    </button>
+                ) : (
                     <Title title={props.book.title} book={props.book} titleType="booktitle" />
-                </button>
+                )
+                }
                 <Authors authors={props.book.authors} page={props.page} />
+            
+            {(props.page == "bookDetail") ? (
+                <div>
+                        <div>{props.book.isbn}</div><div><strong>{props.book.price}Kr</strong></div>
+                        <div>{props.book.description}</div>
+                </div>
+            ) : ( <></> ) 
+
+                }
             </div>
         </div>
     );

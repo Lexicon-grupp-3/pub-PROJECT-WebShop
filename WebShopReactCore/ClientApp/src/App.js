@@ -3,7 +3,8 @@ import { Route } from 'react-router';
 import { Routes, Switch, BrowserRouter as Router } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import BookDetail from './components/BookDetail';
-import Home  from './components/Home';
+import Home from './components/Home';
+import Cart from './components/Cart';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
 import { ApplicationPaths } from './components/api-authorization/ApiAuthorizationConstants';
@@ -34,6 +35,21 @@ export default class App extends Component {
         this.setState({ book, bookList, loading: false, cart });
     }
 
+    addToCart = cartItem => {
+        let cart = this.state.cart;
+        if (cart[cartItem.id]) {
+            cart[cartItem.id].amount += cartItem.amount;
+        }
+        else {
+            cart[cartItem.id] = cartItem;
+        }
+        if (cart[cartItem.id].amount > cart[cartItem.id].book.stock) {
+            cart[cartItem.id].amount = cart[cartItem.id].book.stock;
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        this.setState({ cart });
+    }
+
     async handleBookDetail(bookItem) {
         let book =bookItem.book; 
         this.setState({ book });
@@ -52,14 +68,16 @@ export default class App extends Component {
                     addProduct: this.addProduct,
                     clearcart: this.clearCart,
                     checkout: this.checkout,
-                    handleBookDetail: this.handleBookDetail
+                    handleBookDetail: this.handleBookDetail,
+                    addToCart: this.addToCart
                 }}
             >
                 <Router basename={baseUrl} ref={this.routerRef}>
                     <Layout>
                         <Switch>
                             <Route exact path='/' component={Home} />
-                            <Route exact path="/bookdetail" component={BookDetail} />
+                            <Route exact path='/bookdetail' component={BookDetail} />
+                            <Route exact path="/cart" component={Cart} />
                             <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
                             <Route path='*' component={ResourceNotFound} />
                         </Switch>
