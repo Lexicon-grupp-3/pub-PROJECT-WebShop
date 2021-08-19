@@ -1,68 +1,27 @@
-import React, { Component } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import React from 'react';
+import withContext from '../withContext';
 
-export class AuthorDetail extends Component {
-    static displayName = AuthorDetail.name;
+const AuthorDetail = props => {
 
-    constructor(props) {
-        super(props);
-        this.state = { author: [], loading: true };
-    }
-
-    componentDidMount() {
-        this.populateAuthorDetail();
-    }
-
-    static renderAuthorDetail(author) {
-        { var id3 = 483 };
-
-        return (
+    const author = props.context.author;
+    //const authors = props.context.authors;
+    //const { authors } = props.context;
+    //let content = props.context.loading ?
+    //    <p><strong>Data Loading ...</strong></p>
+    //    : <AuthorList authorList={props.context.authors} page="authorList" />;
+    return (
+        <>
             <div>
-                <p>id        {author.id}</p>
-                <p>Förnamn   {author.firstName}</p>
-                <p>Efternamn {author.lastName}</p>
+                <h4>Den här författaren</h4>
+                {/*    {content}*/}
+                <p>{author.id}</p>
+                <p>{author.lastName}</p>
+                <p>{author.firstName}</p>
+
             </div>
-        );
-    }
+        </>
+    );
 
-    render() {
-        //const { id } = useHistory();
-        //const { id } = useParams();
+};
 
-        let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : AuthorDetail.renderAuthorDetail(this.state.author);
-
-        return (
-            <div>
-                <h1>Författare detaljer  </h1>
-                {contents}
-            </div>
-        );
-    }
-
-    async populateAuthorDetail() {
-        var fakeID = 3;
-
-        const response = await fetch('AuthorBook/AuthorDetail'
-            , {
-                method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                mode: 'cors', // no-cors, *cors, same-origin
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ id: fakeID}) // body data type must match "Content-Type" header
-            }
-
-        );
-        const data = await response.json();
-        this.setState({ author: data, loading: false });
-    }
-
-    //async populateAuthorDetail() {
-    //    //int idx = this.state.idin;
-    //    const response = await fetch('AuthorBook/AuthorDetail');
-    //    const data = await response.json();
-    //    this.setState({ author: data, loading: false });
-    //}
-
-
-}
+export default withContext(AuthorDetail);

@@ -14,6 +14,7 @@ export class ListAuthors extends Component {
     constructor(props) {
         super(props);
         this.state = { actType: 0, authors: [], loading: true };
+        this.setState({ raknare: 1 })
         //this.state = { authors: [], loading: true };
         this.detalj = this.detalj.bind(this);
         this.tillbaka = this.tillbaka.bind(this);
@@ -122,9 +123,22 @@ export class ListAuthors extends Component {
         );
     }
 
+    incrementCounter() {
+        this.setState({
+            raknare: this.state.raknare + 1
+        });
+    }
+
     render() {
         var aa = this.state.actType;
         var id = 4;
+
+
+        //this.setState({raknare: 1 })
+        //while (this.state.raknare < 10) {
+        //    <p>Håller på  {this.state.raknare} </p>
+        //    this.incrementCounter.bind(this)
+        //}
 
         if (this.state.actType === 0) {
             let contents = this.state.loading
@@ -174,7 +188,9 @@ export class ListAuthors extends Component {
             )
         }
         else {
-            this.state = { actType: 3 };
+            this.setState({
+                actType: 3
+            })
 
             return (
                 <div>
