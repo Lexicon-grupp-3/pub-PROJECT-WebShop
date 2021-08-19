@@ -103,11 +103,14 @@ export default class App extends Component {
         this.routerRef.current.history.push("/bookdetail");
     }
 
-    async payment(user) {
+    async payment(user, orderTotal) {
         const cartKeys = Object.keys(this.cart || {});
         // register order, as payed and store on server.
         // empty cart.
-        let json = `{"userEmail":\"${user}\","OrderItems":[`;
+        let json = `{
+                    "userEmail":\"${user}\",
+                    "OrderTotal":${orderTotal},
+                    "OrderItems":[`;
 
         for (let i = 0; i < cartKeys.length; i++) {
             let tmp = this.cart[cartKeys[i]];

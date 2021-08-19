@@ -12,9 +12,10 @@ const Checkout = props => {
     const preCheckout = e => {
         e.preventDefault();
         let user = document.getElementById("user").value;
+        let total = document.getElementById("orderTotal").innerText;
 
         if (user != "")
-            props.context.payment(user);
+            props.context.payment(user, total);
     }
 
     return (
@@ -79,7 +80,7 @@ const Checkout = props => {
                             onClick={preCheckout}
                         >Betala
                         </button>
-                        Att betala: {totalAmount.toFixed(2)}Kr
+                        Att betala: <span id="orderTotal">{totalAmount.toFixed(2)}</span>Kr
                     </div>
                 ) : (<></>)
                 }
