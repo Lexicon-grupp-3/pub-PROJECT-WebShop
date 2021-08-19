@@ -21,3 +21,7 @@
 .removeItem{
    cursor:pointer;
 }
+
+.btn-checkout{
+    align-self:center;
+}

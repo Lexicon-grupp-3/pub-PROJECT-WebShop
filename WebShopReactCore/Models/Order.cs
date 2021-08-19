@@ -12,8 +12,8 @@ namespace WebShopReactCore.Models
         public int Id { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime PayDate { get; set; }
-        public DateTime CreateDateTime { get; set; }
-        public DateTime UpdateDateTime { get; set; }
+
+        public string userEmail { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
 
     }

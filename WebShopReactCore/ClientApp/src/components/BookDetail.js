@@ -13,7 +13,8 @@ const BookDetail = props => {
             <button onClick={() =>
                 props.context.addToCart({
                     book: book,
-                    id: book.bookId
+                    id: book.bookId,
+                    amount: 1
                 })}>Lägg till i Korg
             </button>
         </>

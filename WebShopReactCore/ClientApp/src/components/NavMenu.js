@@ -8,7 +8,6 @@ import './styles/NavMenu.css';
 class NavMenu extends Component {
     static displayName = NavMenu.name;
 
-
     constructor(props) {
         super(props);
 
@@ -25,6 +24,8 @@ class NavMenu extends Component {
     }
 
     render() {
+        let showMe = "show";
+        if (!this.props.context.isAuthenticated) showMe = "hide"
         return (
             <header>
                 <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
@@ -36,9 +37,9 @@ class NavMenu extends Component {
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
                                 </NavItem>
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/orders">Ordrar</NavLink>
-                                </NavItem>
+                                <NavItem className={showMe}>
+                                        <NavLink tag={Link} className="text-dark" to="/orders">Ordrar</NavLink>
+                                    </NavItem>
                                 <LoginMenu></LoginMenu>
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/cart">

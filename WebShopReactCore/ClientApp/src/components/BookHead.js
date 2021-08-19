@@ -9,9 +9,11 @@ const BookHead = (props) => {
 
     return (
         <div className="bookHeadWrapper">
-            <Image src={props.book.pictureRef} page={props.page} />
+            {(props.page == "checkout") ? (<></>) : (
+                <Image src={props.book.pictureRef} page={props.page} />
+            )}
             <div className="titleAuthors">
-                {(props.page == "home" || props.page  == "cart") ? (
+                {(props.page == "home" || props.page == "cart" || props.page == "checkout") ? (
                     <button onClick={() =>
                         props.context.handleBookDetail({
                             book: props.book,
