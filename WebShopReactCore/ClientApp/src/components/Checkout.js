@@ -25,15 +25,17 @@ const Checkout = props => {
                     <div className="col">
                         {(isAuthenticated) ?
                             (
-                                <input type="text" disabled value={userName} />
+                                cartKeys.length ? (
+                                    <input id="user" type="text" disabled value={userName} />
+                                ) : (<></>)
                             ) : (
-                                    cartKeys.length ? (
-                                        <form id="form" >
-                                            <input name="user" id="user" placeholder="name@example.com" />
-                                        </form>
-                                    ) : (<></>)
-                                )
-}
+                                cartKeys.length ? (
+                                    <form id="form" >
+                                        <input name="user" id="user" placeholder="name@example.com" />
+                                    </form>
+                                ) : (<></>)
+                            )
+                        }
                         {cartKeys.length ? (
                             <div className="row">
                                 {
