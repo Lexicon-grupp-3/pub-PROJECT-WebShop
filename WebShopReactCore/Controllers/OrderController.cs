@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using WebShopReactCore.Data;
 using WebShopReactCore.Models;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebShopReactCore.Controllers
 {
@@ -22,102 +23,33 @@ namespace WebShopReactCore.Controllers
         }
 
         [HttpPut]
-        public string SaveOrder([FromBody] string data)
+        public int SaveOrder([FromBody] string data)
         {
             try
             {
                 Order newOrder = JsonSerializer.Deserialize<Order>(data);
+                DateTime tmp = DateTime.Now;
+                //tmp = DateTime.UtcNow();
+                newOrder.DueDate = tmp; //.AddDays(10);
+                newOrder.PayDate = tmp;
+                this._context.Orders.Add(newOrder);
             }
             catch(Exception ex) {
-                try
-                {
-                    Console.WriteLine(ex.Message);
-                    List<OrderItem> items = JsonSerializer.Deserialize<List<OrderItem>>(data).ToList();
-                }
-                catch(Exception ext)
-                {
-                    Console.WriteLine(ext.Message);
-                }
+                Console.WriteLine(ex.Message);
             }
 
-            //OrderItem[] items = js.Deserialize<OrderItem[]>(data);
-            //var keys = items.Keys;
-            //foreach (var key in items.Keys)
-            //{
-                
-            //        var tmp = items[key];
-                
-            //}
-
-            string res="";
-
-            return res ;
+            return this._context.SaveChanges();
         }
 
-        
-
-        // GET: OrderController/Details/5
-        public ActionResult Details(int id)
+            
+        [HttpGet]
+        // [Authorize]
+        public List<Order> GetOrders(string email)
         {
-            return View();
-        }
+            var tmp = this._context.Orders.Where(x => x.userEmail == email).ToList<Order>();
+            //var tmp = this._context.Orders.Where(x => x.userEmail == "chris@data4mat.com").ToList<Order>();
 
-        
-        // POST: OrderController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: OrderController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: OrderController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: OrderController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: OrderController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return tmp;
         }
     }
 }

@@ -12,9 +12,10 @@ const Checkout = props => {
     const preCheckout = e => {
         e.preventDefault();
         let user = document.getElementById("user").value;
+        let total = document.getElementById("orderTotal").innerText;
 
         if (user != "")
-            props.context.payment(user);
+            props.context.payment(user, total);
     }
 
     return (
@@ -24,15 +25,17 @@ const Checkout = props => {
                     <div className="col">
                         {(isAuthenticated) ?
                             (
-                                <input type="text" disabled value={userName} />
+                                cartKeys.length ? (
+                                    <input id="user" type="text" disabled value={userName} />
+                                ) : (<></>)
                             ) : (
-                                    cartKeys.length ? (
-                                        <form id="form" >
-                                            <input name="user" id="user" placeholder="name@example.com" />
-                                        </form>
-                                    ) : (<></>)
-                                )
-}
+                                cartKeys.length ? (
+                                    <form id="form" >
+                                        <input name="user" id="user" placeholder="name@example.com" />
+                                    </form>
+                                ) : (<></>)
+                            )
+                        }
                         {cartKeys.length ? (
                             <div className="row">
                                 {
@@ -79,7 +82,7 @@ const Checkout = props => {
                             onClick={preCheckout}
                         >Betala
                         </button>
-                        Att betala: {totalAmount.toFixed(2)}Kr
+                        Att betala: <span id="orderTotal">{totalAmount.toFixed(2)}</span>Kr
                     </div>
                 ) : (<></>)
                 }

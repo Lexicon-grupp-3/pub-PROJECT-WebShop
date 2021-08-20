@@ -26,45 +26,50 @@ export default class App extends Component {
             loading: true,
             userName: "",
             user: null,
-            isAuthenticated: false
+            isAuthenticated: false,
+            orders: []
         };
         this.routerRef = React.createRef();
         this.handleBookDetail = this.handleBookDetail.bind(this);
+        //this.handleAuthorization = this.handleAuthorization.bind(this);
         authService.subscribe(this.handleAuthorization);
     }
 
     async componentDidMount() {
         let cart = localStorage.getItem("cart");
-        //let orderTotal = localStorage.getItem("orderTotal");
-        let userId = localStorage.getItem("userId");
         const promise = await fetch('AuthorBook/BookList');
         const bookList = await promise.json();
         cart = cart ? JSON.parse(cart) : {};
         const book = {};
         const [isAuthenticated, user] = await Promise.all([authService.isAuthenticated(), authService.getUser()]);
         const userName = user != null ? user.name : "";
-        this.setState({ isAuthenticated, userName, user, book, bookList, loading: false, cart });
+        const orders = [];
+        this.setState({ isAuthenticated, userName, user, book, bookList, loading: false, cart, orders });
         this._subscription = authService.subscribe(() => this.handleAuthorization());
     }
 
     componentWillUnmount() {
         authService.unsubscribe(this._subscription);
+        localStorage.clear("userId");
+        localStorage.clear("orders");
     }
 
     async handleAuthorization() {
-        const [isAuthenticated, user] = await Promise.all([authService.isAuthenticated(), authService.getUser()]);
-        const userName = user != null ? user.name : "";
-        this.setState({
-            isAuthenticated,
-            userName
-        });
-        localStorage.setItem("userId", userName);
+        try {
+            const [isAuthenticated, user] = await Promise.all([authService.isAuthenticated(), authService.getUser()]);
+            const userName = user != null ? user.name : "";
+            this.setState({
+                isAuthenticated,
+                userName
+            });
+        }
+        catch (ex) {}
+        // localStorage.setItem("userId", userName);
+        // if (isAuthenticated && userName != "") this.loadOrders(userName);
     }
 
     addToCart = cartItem => {
         let cart = this.state.cart;
-        //let orderTotal = this.state.orderTotal;
-
 
         // Amount and stock are not implemented.
         if (cart[cartItem.id]) {
@@ -78,7 +83,6 @@ export default class App extends Component {
         if (cart[cartItem.id].amount > cart[cartItem.id].book.stock) {
             cart[cartItem.id].amount = cart[cartItem.id].book.stock;
         }
-        //orderTotal += cartItem.amount * cartItem.book.price;
 
         localStorage.setItem("cart", JSON.stringify(cart));
 
@@ -103,11 +107,19 @@ export default class App extends Component {
         this.routerRef.current.history.push("/bookdetail");
     }
 
-    async payment(user) {
+    async loadOrders(user) {
+        const promise = await fetch(`Order/GetOrders?email=${user}`);
+        const orders = await promise.json();
+        //this.setState({ orders });
+    }
+
+    async payment(user, orderTotal) {
         const cartKeys = Object.keys(this.cart || {});
-        // register order, as payed and store on server.
-        // empty cart.
-        let json = `{"userEmail":\"${user}\","OrderItems":[`;
+        
+        let json = `{
+                    "userEmail":\"${user}\",
+                    "OrderTotal":${orderTotal},
+                    "OrderItems":[`;
 
         for (let i = 0; i < cartKeys.length; i++) {
             let tmp = this.cart[cartKeys[i]];
@@ -123,12 +135,9 @@ export default class App extends Component {
             json += '}';
         }
         json += ']}';
-        //await this.putData(json, "/Order/SaveOrder");
-
-        // test
+        
         let url = "/Order/SaveOrder";
 
-        // Test code for server.
         let tmp = "Test text to parse on the server";
         const response = await fetch(
             url,
@@ -140,19 +149,6 @@ export default class App extends Component {
                 body: `${JSON.stringify(json)}`
             }
         );
-
-        // Original code!
-        //const response = await fetch(
-        //    url,
-        //    {
-        //        method: 'PUT',
-        //        headers: {
-        //            'Content-Type': 'application/json'
-        //        },
-        //        body: JSON.stringify(json)
-        //    }
-        //);
-        // end test
         this.emptyCart();
     }
 
@@ -196,7 +192,6 @@ export default class App extends Component {
                     ...this.state,
                     removeFromCart: this.removeFromCart,
                     addToCart: this.addToCart,
-                    login: this.login,
                     addProduct: this.addProduct,
                     clearcart: this.clearCart,
                     checkout: this.checkout,
@@ -205,7 +200,8 @@ export default class App extends Component {
                     emptyCart: this.emptyCart,
                     setUserId: this.setUserId,
                     removeUserId: this.removeUserId,
-                    payment: this.payment
+                    payment: this.payment,
+                    loadOrders: this.loadOrders
                 }}
             >
                 <Router basename={baseUrl} ref={this.routerRef}>
