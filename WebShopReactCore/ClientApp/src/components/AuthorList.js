@@ -4,7 +4,6 @@ import withContext from '../withContext';
 const AuthorList = props => {
 
     const authors = props.context.authors;
-    //const { authors } = props.context;
     //let content = props.context.loading ?
     //    <p><strong>Data Loading ...</strong></p>
     //    : <AuthorList authorList={props.context.authors} page="authorList" />;
@@ -14,6 +13,13 @@ const AuthorList = props => {
             <div>
                 <h4>Våra författare</h4>
                 {/*    {content}*/}
+                <button type="button"
+                    onClick={() =>
+                        props.context.authorEdit({
+                            author: {}
+                        })}>
+                    {"Ny"}
+                </button>
 
                 <table className='table table-striped' aria-labelledby="tabelLabel">
                     <thead>
@@ -21,6 +27,9 @@ const AuthorList = props => {
                             <th>Id</th>
                             <th>Efternamn</th>
                             <th>Förnamn</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,12 +41,30 @@ const AuthorList = props => {
                                 <td>
                                     <button type="button"
                                         onClick={() =>
+                                            props.context.authorDetail({
+                                                author: author
+                                            })}>
+                                        {"Visa"}
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button"
+                                        onClick={() =>
                                             props.context.authorEdit({
                                             author: author
                                         })}>
                                         {"Ändra"}
                                     </button>
                                 {/*    <button className="btn btn-primary" onClick={this.detalj}>Solsken2</button>*/}
+                                </td>
+                                <td>
+                                    <button type="button"
+                                        onClick={() =>
+                                            props.context.authorDelete({
+                                                author: author
+                                            })}>
+                                        {"Ta bort"}
+                                    </button>
                                 </td>
                             </tr>
                         )}

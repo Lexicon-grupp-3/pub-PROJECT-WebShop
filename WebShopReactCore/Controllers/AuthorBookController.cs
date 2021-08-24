@@ -80,18 +80,18 @@ namespace WebShopReactCore.Controllers
 
             return authorD;
         }
-        //[HttpPost]
-        //public ActionResult AuthorNew(int id)
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult AuthorNew(IFormCollection collection)
-        //{
-        //    return View();
-        //}
+        public void AuthorDelete([FromBody] Author author)
+        {
+            Author author1 = _context.Authors.Find(author.Id);
 
+            //author1.FirstName = author.FirstName;
+            //author1.LastName = author.LastName;
+            //_context.Entry(author1).State = EntityState.Modified;
+            _context.Authors.Remove(author1);
+            _context.SaveChanges();
+
+            return;
+        }
 
         [HttpPost]
         public AuthorDetailViewModel AuthorEdit(Author author)

@@ -3,7 +3,7 @@ import withContext from '../withContext';
 
 const AuthorNew = props => {
 
-    const author = props.context.author;
+    const author = props.context.authorCurrent;
     return (
         <>
             <div>
@@ -25,6 +25,11 @@ const AuthorNew = props => {
                 </label>
                 <input type="submit" value="Skapa" />
             </form>
+            <button type="button"
+                onClick={() =>
+                    props.context.goBack()}>
+                {"Avbryt"}
+            </button>
         </>
     );
 
