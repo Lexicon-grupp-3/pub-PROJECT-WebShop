@@ -20,15 +20,6 @@ namespace WebShopReactCore.Controllers
         }
 
 
-        [HttpGet]
-        //public IEnumerable<Author> Index3()
-        //{
-        //    AuthorsViewModel authors = new AuthorsViewModel();
-        //    authors.ListOfAuthors = _context.Authors.ToList();
-
-        //    return authors.ListOfAuthors;
-        //}
-
         public AuthorsViewModel Index()
         {
             AuthorsViewModel authors = new AuthorsViewModel();
@@ -46,18 +37,7 @@ namespace WebShopReactCore.Controllers
         }
 
         [HttpPost]
-        public AuthorDetailViewModel AuthorDetail([FromBody] Author author)
-        {
-            int id = author.Id;
-            AuthorDetailViewModel authorD = new AuthorDetailViewModel();
-            author = _context.Authors.Find(id);
-            authorD.FirstName = author.FirstName;
-            authorD.LastName = author.LastName;
-
-            return authorD;
-        }
-        [HttpPost]
-        public AuthorDetailViewModel AuthorNew([FromBody] Author author)
+        public AuthorDetailViewModel AuthorEdit([FromBody] Author author)
         {
             AuthorDetailViewModel authorD = new AuthorDetailViewModel();
             if (author.Id == 0)  //create
@@ -93,21 +73,6 @@ namespace WebShopReactCore.Controllers
             return;
         }
 
-        [HttpPost]
-        public AuthorDetailViewModel AuthorEdit(Author author)
-        {
-            AuthorDetailViewModel authorD = new AuthorDetailViewModel();
-            return authorD;
-        }
-        [HttpPost]
-        public AuthorDetailViewModel AuthorEdit(int id)
-        {
-            AuthorDetailViewModel authorD = new AuthorDetailViewModel();
-            return authorD;
-        }
-
-
-
 
         // --------- Books  ---------------- 
         public BooksViewModel Books()
@@ -134,6 +99,30 @@ namespace WebShopReactCore.Controllers
             return books;
         }
 
+        [HttpPost]
+        public Boolean BookEdit([FromBody]Book book)
+        {
+            if (book.Id == 0)  //create
+            {
+                _context.Books.Add(book);
+            }
+            else //update
+            {
+                Book book1 = _context.Books.Find(book.Id);
+                book1 = book;  //?
+                book1.Title = book.Title;
+                book1.Description = book.Description;
+                //_context.Entry(book1).State = EntityState.Modified;
+                _context.Books.Update(book1);
+            }
+            _context.SaveChanges();
+            //Book bookD = new Book();
+            //bookD.Title = book.Title;
+            //bookD.Description = book.Description;
+
+            return true;
+        }
+        // ----------------------------------------------------------
         // GET: AuthorBookController/Details/5
         public ActionResult Details(int id)
         {

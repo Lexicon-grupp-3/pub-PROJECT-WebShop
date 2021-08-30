@@ -7,9 +7,8 @@ import Home from './components/Home';
 import AuthorList from './components/AuthorList';
 import AuthorDetail from './components/AuthorDetail';
 import AuthorEdit from './components/AuthorEdit';
-import AuthorNew from './components/AuthorNew';
 
-import { ListBooks } from './components/ListBooks';
+import BookHandling from './BookHandling';
 
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
@@ -34,7 +33,6 @@ export default class App extends Component {
         this.authorDetail = this.authorDetail.bind(this);
         this.authorEdit = this.authorEdit.bind(this);
         this.authorEditSubmit = this.authorEditSubmit.bind(this);
-        this.authorNew = this.authorNew.bind(this);
         this.authorDelete = this.authorDelete.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
@@ -49,21 +47,14 @@ export default class App extends Component {
     }
 
     async authorDetail(authorX) {
-        //let author = authorX.author;
         let authorCurrent = JSON.parse(JSON.stringify(authorX.author));
         this.setState({ authorCurrent })
         this.routerRef.current.history.push("/authorDetail")
     }
     async authorEdit(authorX) {
-        //let author = authorX.author;
-        let authorCurrent = JSON.parse(JSON.stringify(authorX.author));
+       let authorCurrent = JSON.parse(JSON.stringify(authorX.author));
         this.setState({ authorCurrent })
         this.routerRef.current.history.push("/authorEdit")
-    }
-    async authorNew(authorX) {
-        let author = authorX.author;
-        this.setState({ author })
-        this.routerRef.current.history.push("/authorNew")
     }
     async authorDelete(authorX) {
         //let author = authorX.author;
@@ -110,7 +101,7 @@ export default class App extends Component {
     async authorEditSubmit(event) {
         event.preventDefault();
         let authorCurrent = this.state.authorCurrent;
-        const response2 = await fetch('AuthorBook/AuthorNew'
+        const response2 = await fetch('AuthorBook/AuthorEdit'
             , {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
                 mode: 'cors', // no-cors, *cors, same-origin
@@ -146,7 +137,6 @@ export default class App extends Component {
                     authorDetail: this.authorDetail,
                     authorEdit: this.authorEdit,
                     authorEditSubmit: this.authorEditSubmit,
-                    authorNew: this.authorNew,
                     authorDelete: this.authorDelete,
                     handleChange: this.handleChange,
                     handleChangeFirstName: this.handleChangeFirstName,
@@ -164,10 +154,9 @@ export default class App extends Component {
 
                                 <AuthorizeRoute path='/list-authors' component={AuthorList} />
                                 <AuthorizeRoute path='/authorDetail' component={AuthorDetail} />
-                                <AuthorizeRoute path='/authorNew' component={AuthorNew} />
                                 <AuthorizeRoute path='/authorEdit' component={AuthorEdit} />
 
-                                <AuthorizeRoute path='/list-books' component={ListBooks} />
+                                <AuthorizeRoute path='/list-books' component={BookHandling} />
 
                                 <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
                             </Switch>

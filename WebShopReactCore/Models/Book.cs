@@ -12,7 +12,7 @@ namespace WebShopReactCore.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string PictureRef { get; set; }
-        public string ISBN { get; set; }
+        public string Isbn { get; set; }
         public decimal Price { get; set; }
         public ICollection<AuthorBook> AuthorBooks { get; set; }
 

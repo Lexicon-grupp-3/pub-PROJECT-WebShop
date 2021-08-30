@@ -7,12 +7,10 @@ const AuthorList = props => {
     //let content = props.context.loading ?
     //    <p><strong>Data Loading ...</strong></p>
     //    : <AuthorList authorList={props.context.authors} page="authorList" />;
-    var xx = 3;
     return (
         <>
             <div>
                 <h4>Våra författare</h4>
-                {/*    {content}*/}
                 <button type="button"
                     onClick={() =>
                         props.context.authorEdit({
